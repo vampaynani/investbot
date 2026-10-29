@@ -1,0 +1,3 @@
+# Local environment and persistent evaluator records
+.env
+.investor_evaluator/

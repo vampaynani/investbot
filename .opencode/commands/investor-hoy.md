@@ -1,0 +1,6 @@
+---
+description: Revisa hoy todos los tickers evaluados y recomienda Strong Buy, Buy, Hold, Sell o Strong Sell según el perfil y la evidencia vigente.
+agent: investor-evaluator
+---
+
+Haz el seguimiento diario de todos los tickers registrados en `.investor_evaluator/` conforme a tus instrucciones. Para cada ticker, asigna una recomendación propia entre `Strong Buy`, `Buy`, `Hold`, `Sell` y `Strong Sell`, o `N/D` si faltan datos vigentes suficientes. Basa la decisión en el perfil de inversión guardado, la tesis, la valoración, los riesgos, la concentración y la evidencia actual. Incluye también el consenso agregado de analistas más reciente que puedas verificar, con proveedor, rating, número y desglose de recomendaciones si están disponibles, y fecha de actualización. Presenta por separado la recomendación propia, el consenso de analistas, la valoración fundamental y el precio objetivo consensuado. Explica cambios desde la última revisión y los hechos que harían cambiar la recomendación. No presentes datos anteriores como vigentes. Usa la fecha UTC actual. Si no hay registros, indícalo y explica que debo evaluar un ticker primero. No afirmes que se ha ejecutado ningún seguimiento entre sesiones.
