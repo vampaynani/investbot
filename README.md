@@ -15,7 +15,7 @@ Files in `agent/` define agents. Their frontmatter sets the agent description an
 | `investor-macro-context` | Assesses industry structure, demand, regulation, geopolitics, and supply-chain exposure. |
 | `investor-risk-killer` | Stress-tests the thesis, identifies the condition that would invalidate it, and assesses downside and concentration risk. |
 
-The evaluator requires specialists to separate facts from interpretation, cite sources, and avoid made-up figures. Its 3-to-5-year recommendation is based on the investor profile and verified evidence. Analyst ratings, consensus targets, narratives, and the 1-to-5 fundamental valuation level remain separate inputs.
+The evaluator requires specialists to separate facts from interpretation, cite sources, and avoid made-up figures. Its 3-to-5-year recommendation is based on the investor profile and verified evidence. Before finalizing, it reconciles the action with base-case return, downside, valuation, and unresolved thesis tests. Analyst ratings and 12-month consensus targets remain separate market-expectations lenses: they neither set fundamental valuation nor mechanically determine the action, but any apparent conflict with the 3-to-5-year recommendation must be explained by horizon and evidence.
 
 Ticker records live outside this directory, in `.investor_evaluator/` at the project root. The evaluator reads and updates those records when invoked. It does not run background checks between sessions.
 

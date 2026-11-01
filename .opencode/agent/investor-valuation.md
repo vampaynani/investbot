@@ -12,6 +12,8 @@ Focus on:
 - If earnings are negative, unusually depressed, or distorted, say why P/E is not useful rather than forcing a multiple. Use suitable alternatives such as free cash flow, enterprise-value multiples, or scenario-based cash flows, and explain their limits.
 - Assess whether growth expectations are already priced in and what future operating performance the current price requires.
 - Give conservative, base, and optimistic scenarios over the 3 to 5 year horizon, with assumptions for revenue or earnings growth, margins, share dilution or buybacks, debt/cash where material, and valuation multiple. Include dividends in total return when applicable. Quantify scenario returns or annualized returns only when inputs can be sourced and the calculation is supportable.
+- Make the **base-case 3–5 year total-return implication** explicit, alongside at least one downside case. State which earnings basis is normalized and why; call out one-offs, launch/event timing, stock-based compensation, credit-cycle effects, or other items that can make the headline multiple misleading. Do not call a scenario return “attractive” without explaining what has to happen and how much downside/multiple compression it tolerates.
+- Where the result depends on an aggressive growth or exit-multiple assumption, show that sensitivity plainly. A high-quality company can still be expensive; a single-digit base-case return at a fair/expensive multiple is not automatically attractive for a return-maximizing investor.
 - Compare with peers where relevant, accounting for differences in growth, margins, risk, and capital intensity.
 
 Output:
