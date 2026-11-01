@@ -15,7 +15,9 @@ Files in `agent/` define agents. Their frontmatter sets the agent description an
 | `investor-macro-context` | Assesses industry structure, demand, regulation, geopolitics, and supply-chain exposure. |
 | `investor-risk-killer` | Stress-tests the thesis, identifies the condition that would invalidate it, and assesses downside and concentration risk. |
 
-The evaluator requires specialists to separate facts from interpretation, cite sources, and avoid made-up figures. Its 3-to-5-year recommendation is based on the investor profile and verified evidence. Before finalizing, it reconciles the action with base-case return, downside, valuation, and unresolved thesis tests. Analyst ratings and 12-month consensus targets remain separate market-expectations lenses: they neither set fundamental valuation nor mechanically determine the action, but any apparent conflict with the 3-to-5-year recommendation must be explained by horizon and evidence. Each full evaluation also includes a concise, plain-language newsletter version that preserves the same action, rationale, valuation context, risks, and mind-changing condition.
+The evaluator requires specialists to separate facts from interpretation, cite sources, and avoid made-up figures. Its 3-to-5-year recommendation is based on the investor profile and verified evidence. Before finalizing, it reconciles the action with base-case return, downside, valuation, and unresolved thesis tests. Analyst ratings and 12-month consensus targets remain separate market-expectations lenses: they neither set fundamental valuation nor mechanically determine the action, but any apparent conflict with the 3-to-5-year recommendation must be explained by horizon and evidence. Full evaluations end with the bounded conclusion, review date, and sources; editorial adaptations are handled separately by the `investor-social-newsletter` skill.
+
+For the standard user-facing structure, see [`docs/investor-report-template.md`](docs/investor-report-template.md). It provides a reusable report outline and a final consistency checklist for both people and LLMs; the evaluator agent instructions remain authoritative for research, recommendations, and follow-up records.
 
 Ticker records live outside this directory, in `.investor_evaluator/` at the project root. The evaluator reads and updates those records when invoked. It does not run background checks between sessions.
 
@@ -35,6 +37,7 @@ Each directory in `skills/` contains a `SKILL.md` with the skill's purpose, sele
 | `arena` | Compares parallel candidate solutions and combines the strongest parts. |
 | `figure-it-out` | Plans and tracks a large or multi-phase task when no narrower workflow fits. It uses hypothesis checks and can keep a decision log with `show-me-your-work`. |
 | `how` | Explains how code works, how responsibilities are divided, and where changes belong. Its reference prompts guide exploration and explanation. |
+| `investor-social-newsletter` | Adapts an existing `.investor_evaluator/` evaluation for requested media (such as a social post, newsletter, email, or video script) without rerunning the analysis; preserves the saved investment view and source traceability. |
 | `interrogate` | Runs an adversarial review from multiple angles. References define reviewer prompts, review criteria, and lead judgment. |
 | `no-comments` | Reviews comments, fixes accepted findings, and suggests code structures for constraints that comments claim. |
 | `poteto-mode` | Sets a concise, detailed work style with playbooks for bugs, features, investigations, refactors, shipping, worktrees, and other workflows. |
