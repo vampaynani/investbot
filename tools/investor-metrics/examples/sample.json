@@ -1,0 +1,46 @@
+{
+  "ticker": "TEST",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 200.0,
+    "as_of": "2026-11-06T20:00:00Z",
+    "source_url": "https://example.com/quote"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "normalized EPS",
+    "value_per_share": 10.0,
+    "period": "FY2025",
+    "filed_at": "2026-02-01",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1/filing",
+    "normalization_note": "Illustrative synthetic data only; replace with verified company filings and state every adjustment."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 0.0,
+      "exit_multiple": 16.0,
+      "annual_dividend_yield_pct": 1.0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 8.0,
+      "exit_multiple": 20.0,
+      "annual_dividend_yield_pct": 1.0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 15.0,
+      "exit_multiple": 24.0,
+      "annual_dividend_yield_pct": 1.0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [0.0, 5.0, 8.0, 12.0, 15.0],
+    "exit_multiples": [14.0, 16.0, 20.0, 24.0],
+    "target_cagr_pct": [8.0, 10.0, 12.0],
+    "annual_dividend_yield_pct": 1.0
+  }
+}

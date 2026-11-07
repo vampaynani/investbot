@@ -97,4 +97,8 @@ These skills give focused guidance for recurring design and implementation decis
 
 The agent, command, and skill files are the configuration and instructions. The package dependency does not define a plugin entry point in this directory.
 
+## Scenario calculator
+
+`tools/investor-metrics/` contains a Go command that computes scenario returns, asymmetry ratios, optional probability-weighted returns, sensitivity grids, and reverse-valuation growth requirements from a JSON of verified inputs. It makes no recommendation and verifies nothing; `investor-valuation` is instructed to run it instead of hand-calculating. See `tools/investor-metrics/README.md` for the data-source rules (SEC EDGAR or analyst-normalized figures with notes, and a separately verified quote with a freshness limit).
+
 The `.DS_Store` files are Finder metadata and do not configure OpenCode.

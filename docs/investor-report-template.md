@@ -8,7 +8,7 @@ Plantilla de presentación para evaluaciones completas. Está pensada para que u
 - Separa explícitamente **Hechos** de **Interpretación**. Cita la fuente y fecha cerca de cada dato material.
 - Identifica la listing exacta, moneda, fecha UTC del análisis y la última cotización verificable. Si no puede verificarse un dato material, escribe `N/D`; no lo estimes ni presentes una cifra antigua como actual.
 - Mantén separados calidad empresarial, nivel fundamental de valoración, recomendación propia, consenso de analistas y precio objetivo de consenso.
-- Escenarios son ilustraciones condicionales, no pronósticos ni probabilidades. Muestra supuestos y horizonte; no uses un único múltiplo como argumento de valoración.
+- Escenarios son ilustraciones condicionales, no pronósticos. Muestra supuestos y horizonte; no uses un único múltiplo como argumento de valoración. Solo asigna probabilidades cuando haya base defendible y explica su origen; si no, no las inventes y marca el retorno esperado ponderado `N/D`.
 - Expón fuentes en conflicto, limitaciones y evidencia que cambiaría la conclusión. No prometas retornos.
 - El reporte completo es el análisis de referencia, no una adaptación editorial para publicar. No añadas versiones para redes, newsletter u otros medios salvo que se soliciten aparte.
 
@@ -42,15 +42,28 @@ Plantilla de presentación para evaluaciones completas. Está pensada para que u
 
 **Precio y base financiera:** [precio verificado, moneda, fecha/fuente; beneficio y FCF normalizados; deuda/caja si son materiales; múltiplos actuales y método. Distinguir GAAP/ajustes y explicar normalizaciones.]
 
+### Caída desde máximos históricos (contexto, no señal autónoma)
+
+**Hechos:** [máximo histórico verificado (fecha y base: cierre/intradía; ajustado por splits), cotización comparable y variación porcentual; duración desde el máximo; fuente y fecha. Añadir, cuando los datos sean fiables, drawdowns históricos relevantes y tiempo de recuperación. Comparar con benchmark/sector en el mismo intervalo y aclarar si se usan retornos de precio o total return.]
+
+**Interpretación:** [separar corrección de mercado/compresión de múltiplo de deterioro del negocio: revisar crecimiento, márgenes, FCF, guía, demanda/clientes, ventajas competitivas, capitalización/deuda, regulación y catalizadores. Evaluar si el máximo previo reflejaba una burbuja o fundamentos sostenibles; una caída desde ATH no demuestra por sí sola que la acción esté barata, ni una recuperación pasada garantiza otra futura.]
+
 **Interpretación del nivel [1–5]:** [por qué el precio ofrece margen de seguridad, refleja razonablemente las perspectivas o exige buenos/extraordinarios resultados.]
 
-| Escenario | Supuestos clave | Múltiplo de salida | Retorno total a 3 años | Retorno total a 5 años |
-|---|---|---:|---:|---:|
-| Conservador | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] |
-| Base | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] |
-| Optimista | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] |
+| Escenario | Supuestos clave | Múltiplo de salida | Retorno total a 3 años | Retorno total a 5 años | Probabilidad (si defendible) |
+|---|---|---:|---:|---:|---:|
+| Conservador | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] | [% / N/D] |
+| Base | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] | [% / N/D] |
+| Optimista | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] | [% / N/D] |
 
 **Cómo leerlos:** [qué hace más sensible el resultado —crecimiento, margen, capex, dilución, múltiplo, moneda— y qué no cubre el modelo. Aclara cómo se tratan dividendos y recompras.]
+
+**Asimetría y retorno ponderado (mismo horizonte y base de retorno):**
+
+- **Pérdida conservadora / retorno base:** `|R_conservador| / R_base = [x]`, solo si el conservador implica pérdida y el retorno base es positivo. Indica cuántas veces la pérdida conservadora supera la ganancia del caso base; si la fórmula no aplica, `N/D`.
+- **Retorno optimista / pérdida conservadora:** `R_optimista / |R_conservador| = [x]`, cuando ambos signos permiten calcularlo; si no, `N/D`.
+- **Retorno esperado ponderado:** `Σ(probabilidad_i × retorno_i) = [% / N/D]`. Incluir probabilidades que sumen 100%, su fundamento y la fuente/evidencia; si no son defendibles, no fabricar un número.
+- [Precisar si los retornos son acumulados o anualizados. Estos ratios comparan escenarios, no miden probabilidades ni pérdida máxima; no usar un umbral mecánico para decidir la acción.]
 
 ## 3. Consenso de analistas y precio objetivo — lentes separados
 
@@ -89,6 +102,7 @@ Antes de cerrar, concilia explícitamente:
 - acción con precio verificado y nivel de valoración;
 - retorno total anualizado del caso base a 3–5 años y sus supuestos;
 - pérdida del caso conservador y riesgos de pérdida permanente;
+- ratio de pérdida conservadora frente al retorno base, ratio optimista/conservador y retorno esperado ponderado cuando sus probabilidades estén justificadas;
 - pruebas de tesis pendientes y concentración disponible;
 - diferencias de horizonte entre la recomendación propia (3–5 años), el consenso/objetivo (a menudo 12 meses) y las narrativas.
 
@@ -115,9 +129,10 @@ Antes de cerrar, concilia explícitamente:
 ## Lista de verificación para quien redacta
 
 - [ ] Listing, moneda, precio y fecha comprobados; datos viejos marcados como históricos.
+- [ ] Variación desde ATH y drawdowns históricos comprobados con base comparable; distinguidos de valoración y de deterioro fundamental, con benchmark y tiempo de recuperación cuando sean verificables.
 - [ ] Hechos e interpretación diferenciados y fuentes trazables.
 - [ ] Consenso y precio objetivo no mezclados con valor intrínseco ni con la recomendación propia.
-- [ ] Escenarios transparentes; retorno base y downside comparados en la prueba de consistencia.
+- [ ] Escenarios transparentes; ratios de asimetría y retorno esperado ponderado calculados solo con datos/probabilidades justificables, y comparados en la prueba de consistencia.
 - [ ] Narrativas general y experta separadas; flag aplicado solo si se cumplen sus condiciones.
 - [ ] Acción directa, confianza, condiciones de cambio, concentración conocida y revisión futura explicitadas.
 - [ ] El reporte termina con la conclusión y fuentes; cualquier adaptación para publicar se solicita por separado mediante el skill editorial.
