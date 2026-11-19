@@ -1,0 +1,21 @@
+---
+description: Busca candidatos recientes en los mercados de Estados Unidos y México y prioriza cuáles merecen una evaluación completa.
+agent: investor-evaluator
+---
+
+Revisa los tickers registrados y amplía la búsqueda a candidatos nuevos en los mercados de Estados Unidos y México. Usa los registros de `.investor_evaluator/*.md` como referencia para los tickers ya evaluados, no como límite de búsqueda ni como prueba de datos actuales. Busca candidatos nuevos en listas públicas recientes y noticias financieras. Usa esas listas y noticias solo como pistas, nunca como prueba de que una inversión sea atractiva. Si `$ARGUMENTS` incluye tickers, sectores, temas o listas, úsalos como pistas adicionales. Excluye otros mercados.
+
+Para cada candidato, verifica la empresa emisora y el listing exactos, la moneda local, una cotización vigente con hora UTC y fuente atribuible, historial de precios utilizable y evidencia actual sobre la tesis del negocio. Contrasta la tesis guardada cuando exista. No presentes instantáneas guardadas ni publicaciones antiguas como datos actuales. Si no puedes verificar la fuente, la cotización o el listing, excluye el ticker o márcalo como `evidencia insuficiente`.
+
+Cuando los datos lo permitan, compara el rendimiento de precio del listing con el benchmark local pertinente en ventanas de 1, 3, 6 y 12 meses. Usa fechas y fuentes comparables. Para cada ventana, cita la fuente y la fecha de ambos precios, e indica el benchmark y la base del rendimiento. Indica si los precios se ajustan por splits y otras acciones corporativas, y si excluyen dividendos. No mezcles rendimientos de precio con retorno total. Marca `N/D` en las ventanas que no puedas calcular con datos comparables; no las estimes.
+
+Separa los candidatos en dos grupos:
+
+- **Continuidad de momentum:** identifica una tendencia reciente solo si el historial actual, comparable y relativo al benchmark la respalda. Usa el momentum únicamente para descubrir candidatos, nunca como señal de compra. Comprueba que la tesis y la evidencia empresarial actual no contradigan la tendencia.
+- **Contrarian o reversión:** identifica debilidad de precio o sentimiento solo si puedes evaluar el estado actual de la tesis y encuentras evidencia que apoye una posible reversión. Una caída desde máximos no basta para incluir ni priorizar un ticker.
+
+Para cada candidato, resume la cotización, la calidad y fecha del historial, el rendimiento frente al benchmark, la tesis y la evidencia actual, los riesgos materiales y qué justificaría una evaluación completa. Revalida con fuentes actuales los supuestos materiales de cualquier escenario antes de mostrar asimetría. Hazlo solo si los supuestos son vigentes y defendibles, y los escenarios comparten horizonte y base de retorno. Si los datos son obsoletos o no respaldan los supuestos, indica `N/D`. No deduzcas asimetría del precio objetivo de consenso ni de una caída desde máximos.
+
+Entrega una lista priorizada para evaluación completa, separada por grupo. Incluye ticker, empresa y listing; cotización, moneda, hora UTC y fuente; evidencia de listas o noticias con fecha; rendimiento por ventana frente al benchmark, con las fuentes y fechas de los precios y la base usada; tesis actual; riesgos o datos faltantes; asimetría justificada o `N/D`; y razón de prioridad. Prioriza la solidez de la tesis, la evidencia vigente y los casos que merezcan revisión completa. No emitas una recomendación final `Buy` ni presentes el resultado como una decisión de compra. Si no quedan candidatos verificables, dilo con claridad.
+
+Este análisis es de solo lectura. No modifiques ni crees archivos en `.investor_evaluator/`, no crees registros de cartera y no afirmes que existe seguimiento en segundo plano. Usa la fecha UTC actual. Esta búsqueda no ejecuta evaluaciones completas: entrega una lista priorizada e invita al usuario a elegir los candidatos que desea evaluar. Solo una solicitud posterior del usuario activa el procedimiento existente de `investor-evaluator` para los candidatos elegidos y la delegación a los agentes especialistas `investor-business-quality`, `investor-valuation`, `investor-target-consensus`, `investor-macro-context` e `investor-risk-killer`.
