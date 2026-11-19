@@ -30,6 +30,20 @@ Plantilla de presentación para evaluaciones completas. Está pensada para que u
 
 [Qué ofrece el negocio y qué tiene que salir bien al precio actual.]
 
+## Evaluación táctica (separada del veredicto de 3–5 años)
+
+**FOMO:** [elevated / mixed / low / insufficient evidence] — [evidencia actual y atribuible, o qué dato falta]. No uses un puntaje numérico.
+
+**Acción táctica:** [enter / wait / avoid / N/D] — [razón basada en evidencia. No es una recomendación de tamaño de posición.]
+
+**Catalizador verificado:** [evento o `N/D`; fecha; fuente y timestamp]. **Horizonte:** [1–3 meses por defecto; uno menor solo para un evento verificado, con fuente y timestamp].
+
+**Condición de entrada:** [condición observable o `N/D`]. **Condición de salida:** [condición observable o `N/D`]. **Invalidación:** [condición observable o `N/D`].
+
+**Evidencia:** [enlaces y timestamps separados para cotización, precio/volumen, catalizador y contexto de mercado; incluye la zona horaria cuando la fuente la indique. Usa `N/D` para datos faltantes o no vigentes]. **Confianza:** [alta / media / baja / N/D] — [motivo].
+
+[No conviertas FOMO elevado automáticamente en `avoid` ni FOMO bajo en `enter`. Si la evidencia necesaria no es actual y atribuible, marca `N/D` en los campos afectados.]
+
 ## 1. Calidad del negocio
 
 **Hechos:** [modelo de negocio, segmentos y tendencias relevantes; ventaja competitiva observable; resultados o evidencia de retención/distribución; gestión y asignación de capital. Enlazar fuentes.]
@@ -132,6 +146,7 @@ Antes de cerrar, concilia explícitamente:
 - [ ] Variación desde ATH y drawdowns históricos comprobados con base comparable; distinguidos de valoración y de deterioro fundamental, con benchmark y tiempo de recuperación cuando sean verificables.
 - [ ] Hechos e interpretación diferenciados y fuentes trazables.
 - [ ] Consenso y precio objetivo no mezclados con valor intrínseco ni con la recomendación propia.
+- [ ] Evaluación táctica separada de la recomendación de 3–5 años; FOMO, acción, catalizador y timestamp, horizonte, condiciones de entrada/salida, invalidación, fuentes y confianza están incluidos o marcados `N/D`.
 - [ ] Escenarios transparentes; ratios de asimetría y retorno esperado ponderado calculados solo con datos/probabilidades justificables, y comparados en la prueba de consistencia.
 - [ ] Narrativas general y experta separadas; flag aplicado solo si se cumplen sus condiciones.
 - [ ] Acción directa, confianza, condiciones de cambio, concentración conocida y revisión futura explicitadas.

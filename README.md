@@ -8,14 +8,15 @@ Files in `agent/` define agents. Their frontmatter sets the agent description an
 
 | Agent | Role |
 | --- | --- |
-| `investor-evaluator` | Primary stock evaluator. Delegates work to the five specialist agents, combines their findings into a profile-based recommendation, and keeps one follow-up record per ticker in `.investor_evaluator/` at the project root. |
+| `investor-evaluator` | Primary stock evaluator. Delegates the five fundamental dimensions and a separate tactical assessment, combines the fundamental findings into a profile-based recommendation, and keeps one follow-up record per ticker in `.investor_evaluator/` at the project root. |
 | `investor-business-quality` | Assesses the business model, competitive advantage, management, capital allocation, and durability. It does not make valuation conclusions. |
 | `investor-valuation` | Compares price with earnings, cash flow, and growth over a 3 to 5 year holding period. It provides conservative, base, and optimistic scenarios. |
 | `investor-target-consensus` | Verifies published analyst ratings and price targets as market-expectation data, separate from fundamental valuation and the evaluator's recommendation. |
 | `investor-macro-context` | Assesses industry structure, demand, regulation, geopolitics, and supply-chain exposure. |
 | `investor-risk-killer` | Stress-tests the thesis, identifies the condition that would invalidate it, and assesses downside and concentration risk. |
+| `investor-tactical` | Assesses evidence-based FOMO risk and short-term entry and exit conditions, separate from the 3-to-5-year recommendation. |
 
-The evaluator requires specialists to separate facts from interpretation, cite sources, and avoid made-up figures. Its 3-to-5-year recommendation is based on the investor profile and verified evidence. Before finalizing, it reconciles the action with base-case return, downside, valuation, and unresolved thesis tests. Analyst ratings and 12-month consensus targets remain separate market-expectations lenses: they neither set fundamental valuation nor mechanically determine the action, but any apparent conflict with the 3-to-5-year recommendation must be explained by horizon and evidence. Full evaluations end with the bounded conclusion, review date, and sources; editorial adaptations are handled separately by the `investor-social-newsletter` skill.
+The evaluator requires specialists to separate facts from interpretation, cite sources, and avoid made-up figures. Its 3-to-5-year recommendation is based on the investor profile and verified evidence. Before finalizing, it reconciles the action with base-case return, downside, valuation, and unresolved thesis tests. Analyst ratings and 12-month consensus targets remain separate market-expectations lenses. They neither set fundamental valuation nor mechanically determine the action. Any apparent conflict with the 3-to-5-year recommendation must be explained by horizon and evidence. The `investor-tactical` specialist adds a separate, evidence-gated 1-to-3-month view. It reports qualitative FOMO risk, action, catalyst, horizon, entry and exit conditions, invalidation, evidence, and confidence. It does not change the long-term verdict. Full evaluations end with the bounded conclusion, review date, and sources; editorial adaptations are handled separately by the `investor-social-newsletter` skill.
 
 For the standard user-facing structure, see [`docs/investor-report-template.md`](docs/investor-report-template.md). It provides a reusable report outline and a final consistency checklist for both people and LLMs; the evaluator agent instructions remain authoritative for research, recommendations, and follow-up records.
 
@@ -23,7 +24,7 @@ Ticker records live outside this directory, in `.investor_evaluator/` at the pro
 
 ## Command
 
-`commands/investor-hoy.md` defines the `/investor-hoy` command and routes it to `investor-evaluator`. The command asks the evaluator to review every tracked ticker, check whether data is current, report changes, and keep its recommendation distinct from analyst consensus and fundamental valuation. If no ticker records exist, it asks the user to evaluate a ticker first. The command does not imply that checks run between invocations.
+`.opencode/commands/investor-hoy.md` defines the `/investor-hoy` command and routes it to `investor-evaluator`. Each invocation checks every canonical ticker file matching `[A-Z0-9.-]+\.md`, runs the tactical review for each, and shows the short-term view separately from the long-term recommendation, analyst consensus, and fundamental valuation. It excludes supplemental valuation documents. If no canonical ticker records exist, it asks the user to evaluate a ticker first. The command does not imply that checks run between invocations.
 
 ## Skills
 
