@@ -1,0 +1,46 @@
+{
+  "ticker": "GOOGL",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 280.20,
+    "as_of": "2026-11-17T21:00:00Z",
+    "source_url": "https://finance.yahoo.com/quote/GOOGL/history/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Core operating EPS TTM through Q3-2026, derived from TTM operating income $157.0B less estimated interest and taxes, divided by ~12,088M diluted shares; FY2025 GAAP diluted EPS $10.81 (clean, excludes 2026 non-operating gains) confirms the ~$10.5 level",
+    "value_per_share": 10.50,
+    "period": "TTM through Q3-2026 (ended Sep 30, 2026), cross-checked vs FY2025 GAAP diluted EPS $10.81",
+    "filed_at": "2026-10-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+    "normalization_note": "GAAP TTM diluted EPS $19.16 is distorted by +$126.8B non-operating investment gains in OI&E (9M-2026), making the headline P/E (~14.6x) misleading and unusable. Core basis: TTM operating income $157.0B (sec-api.io analysis of SEC filings), less ~$3.9B annualized interest on $126.1B total debt, taxed at ~19% effective rate, less ~$0.5B preferred dividends, divided by ~12,088M diluted shares = ~$10.2-10.5/core EPS. Used $10.50 as a conservative normalized core EPS base; the operating business has likely grown since FY2025 ($10.81 GAAP diluted EPS), so this base is conservative. Buybacks were $0 in 9M-2026, so no buyback uplift is assumed."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 6,
+      "exit_multiple": 18,
+      "annual_dividend_yield_pct": 0.31
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 10,
+      "exit_multiple": 22,
+      "annual_dividend_yield_pct": 0.31
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 14,
+      "exit_multiple": 26,
+      "annual_dividend_yield_pct": 0.31
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [6, 10, 14],
+    "exit_multiples": [16, 20, 24],
+    "target_cagr_pct": [8, 10, 12],
+    "annual_dividend_yield_pct": 0.31
+  }
+}

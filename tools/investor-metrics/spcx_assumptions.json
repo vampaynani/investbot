@@ -1,0 +1,46 @@
+{
+  "ticker": "SPCX",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 141.70,
+    "as_of": "2026-11-17T21:00:00Z",
+    "source_url": "https://stockanalysis.com/stocks/spcx/history/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "EPS diluido anualizado del Q3 2026 (run-rate), no EPS TTM normalizado",
+    "value_per_share": 1.40,
+    "period": "Q3 2026 EPS diluido $0,35 anualizado x4",
+    "filed_at": "2026-10-22",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026066880/spcx-20260930.htm",
+    "normalization_note": "Supuesto del analista, NO una cifra de la presentación. Q3 2026 EPS diluido $0,35 (10-Q de la SEC) anualizado x4 = $1,40. Es un run-rate superior (upper bound), no beneficio normalizado: el beneficio neto TTM es una pérdida (($2,8)bn); el net income del Q3 $4,4bn incluye ítems no operativos ($0,9bn ingresos por intereses, $1,0bn otros ingresos incl. $0,56bn ganancia no realizada sobre investida parte relacionada, $0,39bn beneficio fiscal) y $1,2bn de compensación en acciones relacionada con Cursor en el segmento SI. El EPS normalizado sostenible probablemente es inferior. Se usa solo como ancla computacional; los escenarios tensan el crecimiento del EPS y el múltiplo de salida. No se paga dividendo (ninguno pagado)."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 15,
+      "exit_multiple": 20,
+      "annual_dividend_yield_pct": 0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 40,
+      "exit_multiple": 25,
+      "annual_dividend_yield_pct": 0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 70,
+      "exit_multiple": 35,
+      "annual_dividend_yield_pct": 0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [10, 25, 40, 60, 90],
+    "exit_multiples": [15, 25, 35, 45],
+    "target_cagr_pct": [0, 5, 10],
+    "annual_dividend_yield_pct": 0
+  }
+}

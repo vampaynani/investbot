@@ -1,0 +1,46 @@
+{
+  "ticker": "AAPL",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 350.47,
+    "as_of": "2026-11-17T18:52:16Z",
+    "source_url": "https://finance.yahoo.com/quote/AAPL/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Normalized TTM diluted EPS",
+    "value_per_share": 8.82,
+    "period": "TTM (FY2026 four quarters ended ~Sep 26, 2026)",
+    "filed_at": "2026-11-03",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000026/aapl-20260926.htm",
+    "normalization_note": "GAAP TTM diluted EPS $8.98 (Yahoo Finance key statistics, consistent with Apple Q4 FY2026 press release). Less identified non-recurring tariff-refund benefit: Q3 FY2026 $0.11/share (Apple Q3 FY2026 release, 2026-07-30) and Q4 FY2026 $0.05/share (Apple Q4 FY2026 press release, 2026-11-02). Total identified tariff refunds in TTM: $0.16/share. Normalized TTM EPS = $8.98 - $0.16 = $8.82. Q1/Q2 FY2026 tariff refund amounts not publicly identified, so normalization is partial and conservative."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 4.0,
+      "exit_multiple": 25.0,
+      "annual_dividend_yield_pct": 0.31
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 8.0,
+      "exit_multiple": 30.0,
+      "annual_dividend_yield_pct": 0.31
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 12.0,
+      "exit_multiple": 35.0,
+      "annual_dividend_yield_pct": 0.31
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [0.0, 4.0, 8.0, 12.0],
+    "exit_multiples": [25.0, 30.0, 35.0],
+    "target_cagr_pct": [0.0, 5.0, 10.0],
+    "annual_dividend_yield_pct": 0.31
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "ticker": "MU",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 699.00,
+    "as_of": "2026-11-17T19:09:37Z",
+    "source_url": "https://finance.yahoo.com/quote/MU/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Normalized mid-cycle diluted EPS (estimate, not from filing)",
+    "value_per_share": 35.00,
+    "period": "FY26-27 cycle mid-cycle estimate",
+    "filed_at": "",
+    "source_url": "https://investors.micron.com/news/press-release/2026/Micron-Technology-Inc--Reports-Record-Fiscal-Fourth-Quarter-and-Full-Year-2026-Results/",
+    "normalization_note": "GAAP FY26 diluted EPS was $74.33 (peak cycle; FY25 was $7.59, FY23 was negative). Q1 FY27 guidance is $37.84 for a single quarter. Normalized estimate of $35.00 represents mid-cycle earnings power, ~53% below FY26 peak, reflecting memory semiconductor cyclicality. Not a company guide or consensus estimate. SBC included in GAAP figures."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": -15.0,
+      "exit_multiple": 14.0,
+      "annual_dividend_yield_pct": 0.09
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 10.0,
+      "exit_multiple": 18.0,
+      "annual_dividend_yield_pct": 0.09
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 20.0,
+      "exit_multiple": 25.0,
+      "annual_dividend_yield_pct": 0.09
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [-15, -10, -5, 0, 5, 10, 15, 20],
+    "exit_multiples": [10, 14, 18, 22, 25, 30],
+    "target_cagr_pct": [0, 5, 8, 10, 12],
+    "annual_dividend_yield_pct": 0.09
+  }
+}

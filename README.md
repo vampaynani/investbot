@@ -19,11 +19,13 @@ The evaluator requires specialists to separate facts from interpretation, cite s
 
 For the standard user-facing structure, see [`docs/investor-report-template.md`](docs/investor-report-template.md). It provides a reusable report outline and a final consistency checklist for both people and LLMs; the evaluator agent instructions remain authoritative for research, recommendations, and follow-up records.
 
-Ticker records live outside this directory, in `.investor_evaluator/` at the project root. The evaluator reads and updates those records when invoked. It does not run background checks between sessions.
+Ticker records live outside this directory, in `.investor_evaluator/` at the project root. Full evaluations read and update those records. `/investor-opportunities` reads them without writing. Neither command runs background checks between sessions.
 
-## Command
+## Commands
 
-`commands/investor-hoy.md` defines the `/investor-hoy` command and routes it to `investor-evaluator`. The command asks the evaluator to review every tracked ticker, check whether data is current, report changes, and keep its recommendation distinct from analyst consensus and fundamental valuation. If no ticker records exist, it asks the user to evaluate a ticker first. The command does not imply that checks run between invocations.
+`commands/investor-today.md` defines `/investor-today` and routes it to `investor-evaluator`. It reviews every tracked ticker, checks whether data is current, reports changes, and keeps its recommendation distinct from analyst consensus and fundamental valuation. If no ticker records exist, it asks the user to evaluate a ticker first. It does not imply that checks run between invocations.
+
+`commands/investor-opportunities.md` defines `/investor-opportunities` and routes it to `investor-evaluator`. It discovers candidates from recent public lists and financial news in U.S. and Mexican markets, and can use tickers, sectors, themes, or lists supplied through `$ARGUMENTS`. Existing `.investor_evaluator/` records provide context but do not limit discovery or establish current facts. The command verifies the exact issuer and listing, current local-currency quote, usable price history, and current thesis evidence. When data permits, it compares 1-, 3-, 6-, and 12-month price performance with the local benchmark and cites the sources, dates, and return basis. It separates momentum from contrarian or reversal candidates. Momentum is discovery context, not a buy signal. It reports scenario asymmetry only when current, supported assumptions share a horizon and return basis. It returns a prioritized list for full evaluation, makes no final `Buy` recommendation, and does not write ticker or portfolio records or claim background monitoring.
 
 ## Skills
 

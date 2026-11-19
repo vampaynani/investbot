@@ -1,0 +1,45 @@
+{
+  "ticker": "MSFT",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 504.695,
+    "as_of": "2026-11-17T18:52:33Z",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/MSFT?range=1d&interval=1m"
+  },
+  "financial_base": {
+    "source_type": "sec_filing",
+    "basis": "EPS diluido TTM (GAAP), 4 trimestres finalizados 2026-09-30 (Q1 FY27): Q2 FY26 5.16 + Q3 FY26 4.27 + Q4 FY26 4.81 + Q1 FY27 4.92",
+    "value_per_share": 19.16,
+    "period": "TTM Q1 FY27 (ended 2026-09-30)",
+    "filed_at": "2026-10-28",
+    "source_url": "https://data.sec.gov/api/xbrl/companyconcept/CIK0000789019/us-gaap/EarningsPerShareDiluted.json"
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 5.0,
+      "exit_multiple": 20.0,
+      "annual_dividend_yield_pct": 0.78
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 10.0,
+      "exit_multiple": 25.0,
+      "annual_dividend_yield_pct": 0.78
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 15.0,
+      "exit_multiple": 28.0,
+      "annual_dividend_yield_pct": 0.78
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [0.0, 5.0, 8.0, 10.0, 12.0, 15.0],
+    "exit_multiples": [16.0, 20.0, 25.0, 28.0],
+    "target_cagr_pct": [6.0, 8.0, 10.0, 12.0],
+    "annual_dividend_yield_pct": 0.78
+  }
+}

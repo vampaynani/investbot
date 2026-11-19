@@ -1,0 +1,45 @@
+{
+  "ticker": "TSLA",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 380.11,
+    "as_of": "2026-11-17T21:00:00Z",
+    "source_url": "https://finance.yahoo.com/quote/TSLA/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "TTM GAAP diluted EPS",
+    "value_per_share": 0.91,
+    "period": "TTM through Q3 2026 (ended Sep 30, 2026)",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026066775/tsla-20260930.htm",
+    "normalization_note": "TTM GAAP diluted EPS = FY2025 net income attributable to common ($3,794M per 10-K filed 2026-01-29, sec.gov) + 9M2026 ($2,378M per 10-Q filed 2026-10-22, sec.gov) - 9M2025 ($2,954M per 10-Q) = $3,218M, divided by ~3,541M diluted weighted-average shares (Q3 2026 10-Q) = $0.91 per share. TTM spans multiple filings so is not a single sec_filing figure. GAAP EPS is depressed by elevated R&D ($2.76B in Q3 2026, incl. AI/robotics) and stock-based compensation ($1.17B in Q3 2026). Non-GAAP diluted EPS was $0.48 in Q3 2026 (~$1.72 TTM) but excludes SBC, a real cash cost. Q3 2026 GAAP operating margin was 2.6%."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": -5,
+      "exit_multiple": 15,
+      "annual_dividend_yield_pct": 0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 10,
+      "exit_multiple": 25,
+      "annual_dividend_yield_pct": 0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 20,
+      "exit_multiple": 35,
+      "annual_dividend_yield_pct": 0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [-10, 0, 10, 20, 30],
+    "exit_multiples": [15, 25, 35, 45],
+    "target_cagr_pct": [5, 10, 15],
+    "annual_dividend_yield_pct": 0
+  }
+}

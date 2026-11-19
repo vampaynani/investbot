@@ -1,0 +1,46 @@
+{
+  "ticker": "GOOG",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 277.60,
+    "as_of": "2026-11-17T21:00:00Z",
+    "source_url": "https://finance.yahoo.com/quote/GOOG/history/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Normalized operating EPS (Q3 2026 operating income annualized / diluted shares)",
+    "value_per_share": 13.12,
+    "period": "Q3 2026 annualized",
+    "filed_at": "2026-10-29",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm",
+    "normalization_note": "GAAP diluted EPS Q3 2026 of $2.12 is distorted by $(8,221)M of other income/expense (investment losses) and non-recurring items. 9M 2026 GAAP diluted EPS of $16.33 includes $127,478M of non-operating investment gains. Normalized basis = Q3 2026 operating income of $40,576M annualized ($162,304M) divided by Q3 2026 diluted weighted-average shares of 12,368M = $13.12 per share. This excludes volatile non-operating investment gains/losses. Source: Alphabet 10-Q for period ended 2026-09-30, filed 2026-10-29 (SEC EDGAR)."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 6,
+      "exit_multiple": 18,
+      "annual_dividend_yield_pct": 0.32
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 10,
+      "exit_multiple": 21,
+      "annual_dividend_yield_pct": 0.32
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 15,
+      "exit_multiple": 24,
+      "annual_dividend_yield_pct": 0.32
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [4, 8, 12, 16],
+    "exit_multiples": [16, 20, 24, 28],
+    "target_cagr_pct": [6, 8, 10, 12],
+    "annual_dividend_yield_pct": 0.32
+  }
+}

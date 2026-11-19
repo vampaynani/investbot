@@ -1,0 +1,45 @@
+{
+  "ticker": "GOOGL",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 279.89,
+    "as_of": "2026-11-17T20:29:37Z",
+    "source_url": "https://finance.yahoo.com/quote/GOOGL/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "FY 2025 GAAP diluted EPS used as conservative normalized core EPS base",
+    "value_per_share": 10.80,
+    "period": "FY 2025 (ended Dec 31, 2025)",
+    "source_url": "https://stockanalysis.com/stocks/googl/financials/",
+    "normalization_note": "TTM GAAP EPS of $19.15 is distorted by +$126.8B non-operating investment gains in OI&E (9M-2026), making the headline P/E of 14.6x misleading. FY 2025 GAAP diluted EPS of $10.80 (S&P Global Market Intelligence via StockAnalysis, updated Oct 29 2026) excludes these 2026 non-operating gains and represents the core earnings power of the business. Used as a conservative normalized base; the operating business has likely grown since FY 2025, so the true core TTM EPS may be higher. Source data verified: Revenue TTM $471.1B, Net income TTM $235.7B, FY2025 EPS $10.80."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 8,
+      "exit_multiple": 18,
+      "annual_dividend_yield_pct": 0.31
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 12,
+      "exit_multiple": 22,
+      "annual_dividend_yield_pct": 0.31
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 18,
+      "exit_multiple": 26,
+      "annual_dividend_yield_pct": 0.31
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [6, 10, 15],
+    "exit_multiples": [16, 20, 24],
+    "target_cagr_pct": [8, 10, 12],
+    "annual_dividend_yield_pct": 0.31
+  }
+}
