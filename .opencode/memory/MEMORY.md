@@ -1,0 +1,1 @@
+- [root-investbot-fomo-trade-setup](root-investbot-fomo-trade-setup.md) — promoted durable memory entry
