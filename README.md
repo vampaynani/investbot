@@ -8,11 +8,10 @@ Files in `agent/` define agents. Their frontmatter sets the agent description an
 
 | Agent | Role |
 | --- | --- |
-| `investor-evaluator` | Primary stock evaluator. Delegates work to the five specialist agents, combines their findings into a profile-based recommendation, and keeps one follow-up record per ticker in `.investor_evaluator/` at the project root. |
+| `investor-evaluator` | Primary stock evaluator. Delegates four specialist-owned dimensions, handles material macro/industry context directly, combines the findings into a profile-based recommendation, and keeps one follow-up record per ticker in `.investor_evaluator/` at the project root. |
 | `investor-business-quality` | Assesses the business model, competitive advantage, management, capital allocation, and durability. It does not make valuation conclusions. |
 | `investor-valuation` | Compares price with earnings, cash flow, and growth over a 3 to 5 year holding period. It provides conservative, base, and optimistic scenarios. |
 | `investor-target-consensus` | Verifies published analyst ratings and price targets as market-expectation data, separate from fundamental valuation and the evaluator's recommendation. |
-| `investor-macro-context` | Assesses industry structure, demand, regulation, geopolitics, and supply-chain exposure. |
 | `investor-risk-killer` | Stress-tests the thesis, identifies the condition that would invalidate it, and assesses downside and concentration risk. |
 
 The evaluator requires specialists to separate facts from interpretation, cite sources, and avoid made-up figures. Its 3-to-5-year recommendation is based on the investor profile and verified evidence. Before finalizing, it reconciles the action with base-case return, downside, valuation, and unresolved thesis tests. Analyst ratings and 12-month consensus targets remain separate market-expectations lenses: they neither set fundamental valuation nor mechanically determine the action, but any apparent conflict with the 3-to-5-year recommendation must be explained by horizon and evidence. Full evaluations end with the bounded conclusion, review date, and sources; editorial adaptations are handled separately by the `investor-social-newsletter` skill.
@@ -21,9 +20,13 @@ For the standard user-facing structure, see [`docs/investor-report-template.md`]
 
 Ticker records live outside this directory, in `.investor_evaluator/` at the project root. Full evaluations read and update those records. `/investor-opportunities` reads them without writing. Neither command runs background checks between sessions.
 
+Portfolio positions are separate from company research. `/investor-portfolio` creates or updates the local `.investor_portfolio/positions.json` snapshot from information the user supplies. `/investor-today` reads that snapshot when present and keeps portfolio context separate from the fundamental recommendation. No snapshot means holdings are unknown, not zero; the command does not run broker sync or background monitoring. `.investor_portfolio/` is ignored by Git but is not encrypted, and its contents enter the model context when used.
+
 ## Commands
 
-`commands/investor-today.md` defines `/investor-today` and routes it to `investor-evaluator`. It reviews every tracked ticker, checks whether data is current, reports changes, and keeps its recommendation distinct from analyst consensus and fundamental valuation. If no ticker records exist, it asks the user to evaluate a ticker first. It does not imply that checks run between invocations.
+`commands/investor-today.md` defines `/investor-today` and routes it to `investor-evaluator`. It reviews only positions in `.investor_portfolio/positions.json`, checks whether an evaluation exists and whether its data is current, and keeps its recommendation distinct from portfolio context, analyst consensus, and fundamental valuation. It does not imply that checks run between invocations.
+
+`commands/investor-portfolio.md` defines `/investor-portfolio`. It maintains the local positions snapshot from user-provided data and never writes holdings into ticker research records.
 
 `commands/investor-opportunities.md` defines `/investor-opportunities` and routes it to `investor-evaluator`. It discovers candidates from recent public lists and financial news in U.S. and Mexican markets, and can use tickers, sectors, themes, or lists supplied through `$ARGUMENTS`. Existing `.investor_evaluator/` records provide context but do not limit discovery or establish current facts. The command verifies the exact issuer and listing, current local-currency quote, usable price history, and current thesis evidence. When data permits, it compares 1-, 3-, 6-, and 12-month price performance with the local benchmark and cites the sources, dates, and return basis. It separates momentum from contrarian or reversal candidates. Momentum is discovery context, not a buy signal. It reports scenario asymmetry only when current, supported assumptions share a horizon and return basis. It returns a prioritized list for full evaluation, makes no final `Buy` recommendation, and does not write ticker or portfolio records or claim background monitoring.
 

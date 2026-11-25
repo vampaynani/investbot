@@ -7,8 +7,8 @@ Plantilla de presentación para evaluaciones completas. Está pensada para que u
 - Escribe en español claro y profesional. Abre con una conclusión directa; evita esconder la acción al final.
 - Separa explícitamente **Hechos** de **Interpretación**. Cita la fuente y fecha cerca de cada dato material.
 - Identifica la listing exacta, moneda, fecha UTC del análisis y la última cotización verificable. Si no puede verificarse un dato material, escribe `N/D`; no lo estimes ni presentes una cifra antigua como actual.
-- Mantén separados calidad empresarial, nivel fundamental de valoración, recomendación propia, consenso de analistas y precio objetivo de consenso.
-- Escenarios son ilustraciones condicionales, no pronósticos. Muestra supuestos y horizonte; no uses un único múltiplo como argumento de valoración. Solo asigna probabilidades cuando haya base defendible y explica su origen; si no, no las inventes y marca el retorno esperado ponderado `N/D`.
+- Mantén separados calidad empresarial, lectura fundamental del precio, recomendación propia, consenso de analistas y precio objetivo de consenso. **No muestres la puntuación interna 1–5 de valoración en el reporte al usuario**; expresa la lectura del precio en lenguaje claro y conserva la puntuación solo en el registro técnico.
+- Incluye siempre los tres escenarios (**pesimista (conservador), base y optimista**) para 3 y 5 años, calculados con `tools/investor-metrics` a partir de inputs verificados. La selección de supuestos es juicio analítico; la aritmética debe ser reproducible. Muestra retornos totales acumulados y anualizados, y ratios de asimetría por horizonte cuando correspondan. Escenarios condicionales, no pronósticos. Solo asigna probabilidades cuando haya base defendible y explica su origen; si no, marca el retorno ponderado `N/D`.
 - Expón fuentes en conflicto, limitaciones y evidencia que cambiaría la conclusión. No prometas retornos.
 - El reporte completo es el análisis de referencia, no una adaptación editorial para publicar. No añadas versiones para redes, newsletter u otros medios salvo que se soliciten aparte.
 
@@ -22,13 +22,30 @@ Plantilla de presentación para evaluaciones completas. Está pensada para que u
 
 ## Veredicto
 
-**[Strong Buy / Buy / Hold / Sell / Strong Sell / N/D] — valoración [1–5 / N/D] — calidad [alta/media/baja/N/D].**
+**[Strong Buy / Buy / Hold / Sell / Strong Sell / N/D] — calidad [alta/media/baja/N/D].**
 
 [En 2–4 frases: acción relevante para el perfil y horizonte de 3–5 años, razón principal, confianza y condición que acota el veredicto. Si faltan datos críticos, señalar que es provisional.]
 
 ### En una frase
 
 [Qué ofrece el negocio y qué tiene que salir bien al precio actual.]
+
+### Resumen de escenarios y asimetría (retorno total)
+
+| Caso | Supuestos clave | Múltiplo de salida | 3 años: acumulado / anualizado | 5 años: acumulado / anualizado |
+|---|---|---:|---:|---:|
+| Pesimista (conservador) | [crecimiento EPS/FCF por acción, margen, dilución/recompras] | [x] | [% / %] | [% / %] |
+| Base | [crecimiento EPS/FCF por acción, margen, dilución/recompras] | [x] | [% / %] | [% / %] |
+| Optimista | [crecimiento EPS/FCF por acción, margen, dilución/recompras] | [x] | [% / %] | [% / %] |
+
+| Horizonte | Pérdida pesimista / retorno base `|R_p| / R_b` | Retorno optimista / pérdida pesimista `R_o / |R_p|` |
+|---|---:|---:|
+| 3 años | [x / N/D] | [x / N/D] |
+| 5 años | [x / N/D] | [x / N/D] |
+
+**Probabilidad/retorno ponderado:** [solo si hay probabilidades defendibles, con fuente y base; de otro modo `N/D`]. Los ratios comparan magnitudes de escenarios, no probabilidades ni pérdida máxima. Si el precio o los inputs no se pueden verificar, conserva las filas y marca los resultados afectados `N/D`, explicando por qué.
+
+**Base de retorno:** total return = retorno de precio + rendimiento de dividendos acumulado simple, sin reinversión; impuestos, comisiones y FX se excluyen. Si no se verificó el dividendo, indica que los resultados son price-only.
 
 ## 1. Calidad del negocio
 
@@ -38,32 +55,19 @@ Plantilla de presentación para evaluaciones completas. Está pensada para que u
 
 **Confianza:** [alta/media/baja] — [razón o dato que falta].
 
-## 2. Valoración y escenarios
+## 2. Valoración: base financiera y supuestos
 
 **Precio y base financiera:** [precio verificado, moneda, fecha/fuente; beneficio y FCF normalizados; deuda/caja si son materiales; múltiplos actuales y método. Distinguir GAAP/ajustes y explicar normalizaciones.]
 
-### Caída desde máximos históricos (contexto, no señal autónoma)
+### Contexto de precio (solo si cambia la tesis)
 
-**Hechos:** [máximo histórico verificado (fecha y base: cierre/intradía; ajustado por splits), cotización comparable y variación porcentual; duración desde el máximo; fuente y fecha. Añadir, cuando los datos sean fiables, drawdowns históricos relevantes y tiempo de recuperación. Comparar con benchmark/sector en el mismo intervalo y aclarar si se usan retornos de precio o total return.]
+**Hechos:** [Incluya máximo histórico, drawdown, recuperación o comparación con benchmark solo si aporta evidencia material a la tesis y puede verificarse con datos comparables; de lo contrario, omita esta subsección.]
 
-**Interpretación:** [separar corrección de mercado/compresión de múltiplo de deterioro del negocio: revisar crecimiento, márgenes, FCF, guía, demanda/clientes, ventajas competitivas, capitalización/deuda, regulación y catalizadores. Evaluar si el máximo previo reflejaba una burbuja o fundamentos sostenibles; una caída desde ATH no demuestra por sí sola que la acción esté barata, ni una recuperación pasada garantiza otra futura.]
+**Interpretación:** [Si se incluye, separe corrección de mercado/compresión de múltiplo de deterioro del negocio. Una caída desde máximos no demuestra por sí sola que la acción esté barata, ni una recuperación pasada garantiza otra futura.]
 
-**Interpretación del nivel [1–5]:** [por qué el precio ofrece margen de seguridad, refleja razonablemente las perspectivas o exige buenos/extraordinarios resultados.]
+**Lectura del precio:** [explica en lenguaje claro si el precio ofrece margen de seguridad, refleja razonablemente los fundamentos o exige resultados especialmente buenos. No muestres una puntuación numérica interna.]
 
-| Escenario | Supuestos clave | Múltiplo de salida | Retorno total a 3 años | Retorno total a 5 años | Probabilidad (si defendible) |
-|---|---|---:|---:|---:|---:|
-| Conservador | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] | [% / N/D] |
-| Base | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] | [% / N/D] |
-| Optimista | [crecimiento, márgenes, inversión/caja, acciones] | [x] | [% / anualizado] | [% / anualizado] | [% / N/D] |
-
-**Cómo leerlos:** [qué hace más sensible el resultado —crecimiento, margen, capex, dilución, múltiplo, moneda— y qué no cubre el modelo. Aclara cómo se tratan dividendos y recompras.]
-
-**Asimetría y retorno ponderado (mismo horizonte y base de retorno):**
-
-- **Pérdida conservadora / retorno base:** `|R_conservador| / R_base = [x]`, solo si el conservador implica pérdida y el retorno base es positivo. Indica cuántas veces la pérdida conservadora supera la ganancia del caso base; si la fórmula no aplica, `N/D`.
-- **Retorno optimista / pérdida conservadora:** `R_optimista / |R_conservador| = [x]`, cuando ambos signos permiten calcularlo; si no, `N/D`.
-- **Retorno esperado ponderado:** `Σ(probabilidad_i × retorno_i) = [% / N/D]`. Incluir probabilidades que sumen 100%, su fundamento y la fuente/evidencia; si no son defendibles, no fabricar un número.
-- [Precisar si los retornos son acumulados o anualizados. Estos ratios comparan escenarios, no miden probabilidades ni pérdida máxima; no usar un umbral mecánico para decidir la acción.]
+**Supuestos y sensibilidad:** [explica brevemente qué mueve más los resultados —crecimiento, margen, capex, dilución, múltiplo, moneda—, qué escenario está más expuesto y qué no cubre el modelo. La tabla de escenarios y ratios aparece una sola vez, en el resumen del veredicto.]
 
 ## 3. Consenso de analistas y precio objetivo — lentes separados
 
@@ -71,7 +75,7 @@ Plantilla de presentación para evaluaciones completas. Está pensada para que u
 
 **Objetivo agregado:** [moneda, objetivo, horizonte, media/mediana u otro método, número/rango de analistas, fuente y actualización].
 
-**Comparación con la cotización:** [porcentaje implícito y clasificación descuento/paridad/prima/N/D] solo si listing, moneda, fechas y horizonte son comparables. Explicar que el objetivo es una expectativa de mercado, no valor intrínseco ni retorno total. No usar rating u objetivo para fijar el nivel fundamental o rescatar una recomendación débil.
+**Comparación con la cotización:** [porcentaje implícito y clasificación descuento/paridad/prima/N/D] solo si listing, moneda, fechas y horizonte son comparables. Explicar que el objetivo es una expectativa de mercado, no valor intrínseco ni retorno total. No usar rating u objetivo para cambiar la lectura fundamental del precio o rescatar una recomendación débil.
 
 ## 4. Macro, industria y narrativas
 
@@ -97,16 +101,15 @@ Plantilla de presentación para evaluaciones completas. Está pensada para que u
 
 ## Consistencia de la recomendación
 
-Antes de cerrar, concilia explícitamente:
+Antes de cerrar, concilia explícitamente, **remitiendo al resumen de escenarios de arriba sin repetir sus cifras**:
 
-- acción con precio verificado y nivel de valoración;
-- retorno total anualizado del caso base a 3–5 años y sus supuestos;
-- pérdida del caso conservador y riesgos de pérdida permanente;
-- ratio de pérdida conservadora frente al retorno base, ratio optimista/conservador y retorno esperado ponderado cuando sus probabilidades estén justificadas;
+- acción con precio verificado y lectura fundamental del precio;
+- si los casos base y pesimista (conservador) respaldan la acción elegida y si los ratios de asimetría cambian la lectura del riesgo;
+- retorno ponderado solo cuando las probabilidades estén justificadas;
 - pruebas de tesis pendientes y concentración disponible;
 - diferencias de horizonte entre la recomendación propia (3–5 años), el consenso/objetivo (a menudo 12 meses) y las narrativas.
 
-**Conclusión de consistencia:** [por qué el retorno base compensa —o no— el downside y la incertidumbre. Si valoración es 3–4, el retorno base es solo medio/alto de un dígito, o hay una prueba material sin resolver, normalmente Hold salvo evidencia específica que justifique Buy. No aplicar un umbral mecánico; explicar el juicio.]
+**Conclusión de consistencia:** [por qué el retorno base compensa —o no— el downside y la incertidumbre, remitiendo a la tabla en vez de repetir resultados. Si el precio parece caro, el retorno base es solo medio/alto de un dígito, o hay una prueba material sin resolver, normalmente `Hold` salvo evidencia específica que justifique `Buy`. No aplicar un umbral mecánico; explicar el juicio.]
 
 ## Conclusión acotada y próxima revisión
 
@@ -129,10 +132,10 @@ Antes de cerrar, concilia explícitamente:
 ## Lista de verificación para quien redacta
 
 - [ ] Listing, moneda, precio y fecha comprobados; datos viejos marcados como históricos.
-- [ ] Variación desde ATH y drawdowns históricos comprobados con base comparable; distinguidos de valoración y de deterioro fundamental, con benchmark y tiempo de recuperación cuando sean verificables.
+- [ ] Contexto de máximo histórico/drawdown incluido solo si es material y verificable; no hacer investigación histórica rutinaria.
 - [ ] Hechos e interpretación diferenciados y fuentes trazables.
 - [ ] Consenso y precio objetivo no mezclados con valor intrínseco ni con la recomendación propia.
-- [ ] Escenarios transparentes; ratios de asimetría y retorno esperado ponderado calculados solo con datos/probabilidades justificables, y comparados en la prueba de consistencia.
+- [ ] Tres escenarios calculados con la herramienta para 3 y 5 años; ratios de asimetría calculados por horizonte cuando sean matemáticamente aplicables; probabilidades solo con evidencia justificable; resultados comparados en la prueba de consistencia y mostrados una sola vez en el resumen del veredicto.
 - [ ] Narrativas general y experta separadas; flag aplicado solo si se cumplen sus condiciones.
 - [ ] Acción directa, confianza, condiciones de cambio, concentración conocida y revisión futura explicitadas.
 - [ ] El reporte termina con la conclusión y fuentes; cualquier adaptación para publicar se solicita por separado mediante el skill editorial.

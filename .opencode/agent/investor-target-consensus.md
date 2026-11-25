@@ -20,3 +20,5 @@ Output:
 - Confidence and what missing, conflicting, or changed evidence would alter the reading.
 
 If the current price or a recent, comparable consensus target cannot be verified, report `N/D` for the target comparison and explain why. If the aggregate rating cannot be verified, report `N/D` for the rating. Never reuse stale data as current or invent a target, rating, analyst count, or source. Do not assign the evaluator's 1–5 valuation level, change the fundamental valuation conclusion, or produce personalized advice. Cite sources.
+
+Use the evaluator's shared quote/listing evidence rather than searching for it again. Search only for the provider's current rating, split, and target evidence; compare a second provider only when a material conflict or clear verification gap exists. Keep the result concise and use no more than 3 key source links.

@@ -1,3 +1,4 @@
-# Local environment and persistent evaluator records
+# Local environment and persistent investor records
 .env
 .investor_evaluator/
+.investor_portfolio/
