@@ -1,6 +1,28 @@
 # Plantilla de reporte de evaluación bursátil
 
-Plantilla de presentación para evaluaciones completas. Está pensada para que una persona u otro LLM pueda encontrar rápidamente la decisión, revisar de dónde salen los datos y comprobar que la recomendación concuerda con los escenarios. Las instrucciones del agente y el registro vigente por ticker siguen siendo la fuente de las reglas y de los datos.
+Plantilla de presentación para evaluaciones completas. La respuesta final al usuario usa primero el formato compacto de resultados de abajo. El informe completo conserva después el detalle necesario para revisar las fuentes, las hipótesis y la consistencia de la recomendación. Las instrucciones del agente y el registro vigente por ticker siguen siendo la fuente de las reglas y de los datos.
+
+## Formato de resultados para la respuesta final
+
+Abre con una frase que indique que la evaluación terminó, el ticker, la recomendación, la calidad, la confianza y la lectura del precio. Menciona dónde quedó guardado el informe. Resume los factores decisivos en viñetas, sin repetir el análisis completo:
+
+```markdown
+Evaluación de **[TICKER]** completada. Veredicto: **[acción]**, calidad [alta/media/baja], confianza [alta/media/baja], lectura del precio [barata/atractiva/razonable/cara/muy cara/N/D]. Resumen del informe (guardado en `.investor_evaluator/[TICKER].md`):
+
+- **Precio verificado:** [moneda, precio, listing, fecha/hora y fuente; o N/D].
+- **Valoración:** [base financiera normalizada, múltiplo y caveat; estado de control de alto múltiplo cuando corresponda; lectura del margen de seguridad].
+- **Escenarios (3y / 5y):** [retorno total y anualizado para pesimista/conservador, base y optimista; ratios de asimetría por horizonte]. Si un resultado no se puede calcular, marca N/D y di por qué.
+- **Consenso (lente separado):** [proveedor, rating, número y desglose de analistas, objetivo, diferencia frente al precio, horizonte, fecha y fuente; aclara que es expectativa de mercado, no valor intrínseco].
+- **Narrativas:** [narrativa general y narrativa experta por separado, evidencia y flag aplicable; marca evidencia insuficiente si corresponde].
+- **Killer switch:** [condición verificable que invalidaría la tesis]. **Próxima prueba:** [evento y fecha, si se conocen].
+- **Cartera:** [qué permite afirmar el snapshot sobre posición y concentración, con fecha y cobertura; si falta o es parcial, dilo sin inferir ausencia de posición]. Explica por separado qué implica para acciones existentes y para capital nuevo.
+
+**Próxima revisión completa:** [fecha UTC], después de [evento/razón]. [Añade los disparadores de revisión anticipada.]
+```
+
+Usa las cifras verificadas y conservadas en el registro. No rellenes huecos con estimaciones. La respuesta compacta debe incluir los tres escenarios y los ratios de asimetría, pero no necesita duplicar la tabla completa de supuestos del informe. Mantén las recomendaciones, la valoración fundamental, el consenso y las narrativas como lentes distintas. No repitas cantidades, coste base ni pesos de cartera.
+
+El informe completo de referencia debe seguir el formato detallado siguiente; el resumen compacto no lo sustituye.
 
 ## Reglas de presentación
 
@@ -137,5 +159,5 @@ Antes de cerrar, concilia explícitamente, **remitiendo al resumen de escenarios
 - [ ] Consenso y precio objetivo no mezclados con valor intrínseco ni con la recomendación propia.
 - [ ] Tres escenarios calculados con la herramienta para 3 y 5 años; ratios de asimetría calculados por horizonte cuando sean matemáticamente aplicables; probabilidades solo con evidencia justificable; resultados comparados en la prueba de consistencia y mostrados una sola vez en el resumen del veredicto.
 - [ ] Narrativas general y experta separadas; flag aplicado solo si se cumplen sus condiciones.
-- [ ] Acción directa, confianza, condiciones de cambio, concentración conocida y revisión futura explicitadas.
+- [ ] Respuesta final presentada primero en el formato compacto de resultados; acción directa, confianza, cartera conocida y revisión futura explicitadas.
 - [ ] El reporte termina con la conclusión y fuentes; cualquier adaptación para publicar se solicita por separado mediante el skill editorial.
