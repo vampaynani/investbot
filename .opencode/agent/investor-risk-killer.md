@@ -11,6 +11,7 @@ Focus on:
 - Valuation risk: what happens if growth disappoints
 - The killer switch: the specific condition that would invalidate the thesis
 - Whether the downside is survivable
+- Separate normal market volatility and temporary drawdowns from evidence of permanent impairment. Do not treat volatility alone as a thesis break or reason to avoid a fundamentally supported 3–5 year investment; keep the killer switch and permanent-loss risks as hard limits.
 - When investor-evaluator requests it because verified P/E exceeds 20x: define the quantitative break threshold of the valuation thesis — the minimum EPS growth below which the base-case return is annulled, and the exit-multiple condition or business deterioration that invalidates the thesis (for example, growth below X% for two consecutive quarters, or declining margins).
 
 Output:
