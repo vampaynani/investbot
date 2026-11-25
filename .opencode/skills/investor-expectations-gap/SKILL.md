@@ -42,6 +42,18 @@ Usa la calculadora local con entradas verificadas para preguntas 1 y 3; nunca ca
 
 Para la pregunta 3, añade a la sensibilidad del mismo archivo de entrada el crecimiento anual a la mitad del caso base y múltiplos de salida de 18x y 20x. Informa ambos resultados para 3 y 5 años; no ejecutes una corrida separada. Si falta un input verificado, marca ese resultado `N/D`.
 
+### Rama condicional — capex material y posible conversión a caja
+
+Si el capex de crecimiento es material para la tesis y el FCF actual es negativo, deprimido o no representativo, añade una **sensibilidad complementaria** de FCF normalizado; no sustituye los escenarios primarios sustentados por datos. No asumas que el capex ha sido exitoso históricamente: exige evidencia del historial de retornos y separa esa evidencia de la hipótesis futura.
+
+1. Incluye exactamente dos bases hipotéticas de FCF por acción en `synthetic_fcf_bases`: `partial_conversion` y `strong_conversion`. Usa rangos basados en OCF normalizado menos capex de mantenimiento cuando esos componentes estén disponibles.
+2. Si no se puede verificar D&A, capex de mantenimiento o capital de trabajo normalizado, marca cada base explícitamente como **sintética/no verificada**, explica qué nivel de conversión representa y por qué se eligió el valor. Nunca llames a esas cifras FCF reportado, consenso o pronóstico. Si no hay anclas numéricas defendibles ni solicitadas por el usuario, usa `N/D` en vez de inventarlas.
+3. Para cada base, incluye sus tres escenarios (conservador, base, optimista), crecimiento anual del FCF/share, múltiplos P/FCF de salida y, si procede, sensibilidad/reverse valuation. Distingue esos múltiplos P/FCF del P/E del análisis primario.
+4. Ejecuta el archivo una sola vez: el campo opcional `synthetic_fcf_bases` hace que la calculadora devuelva ambos juegos de resultados junto a los escenarios primarios. No lances corridas duplicadas para los mismos supuestos.
+5. Presenta por base: FCF/share supuesto, múltiplo P/FCF implícito actual, retornos acumulados/anualizados a 3 y 5 años, asimetrías aplicables y condición operacional que haría real esa conversión. Mantén la recomendación anclada a evidencia verificada: un escenario sintético positivo, por sí solo, no autoriza subir la acción.
+
+En el caso AMZN iniciado por el usuario, USD 9 y USD 11 por acción son anclas sintéticas solicitadas para representar conversión parcial y más fuerte, no estimaciones verificadas ni valores universales para otras compañías.
+
 ### Paso 2 — investor-business-quality valida el crecimiento requerido
 Responde si el crecimiento del EPS necesario para justificar el precio está respaldado por ROIC, tasa de reinversión y TAM, o si es solo extrapolación del pasado. No da conclusiones de precio ni de valoración.
 
@@ -55,6 +67,7 @@ Define el crecimiento mínimo del EPS por debajo del cual el retorno base se anu
 ### Paso 5 — El evaluador integra y registra
 - Combina las respuestas en un veredicto único basado en el perfil del inversor (horizonte 3–5 años, maximizar retorno total, tolerar volatilidad).
 - Registra en el snapshot de evaluación bajo **"valuation assumptions"** y **"killer switch"**: preguntas 1–5, respuestas de cada especialista, escenario de mitad de crecimiento + salida a 18-20x, y umbral de ruptura.
+- Cuando se active la rama de capex, registra también las dos bases sintéticas de FCF, sus supuestos, resultados y la advertencia de que no son hechos; nunca reemplaces ni sobrescribas los escenarios primarios con ellos.
 - Si el caso base ofrece solo un retorno de un dígito medio/bajo, la lectura interna del precio es razonable-a-cara, o un test de tesis a corto plazo está sin resolver, usa `Hold` a menos que exista evidencia específica que justifique `Buy`.
 
 ## Reglas de integración

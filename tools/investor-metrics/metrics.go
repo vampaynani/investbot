@@ -24,14 +24,15 @@ type Options struct {
 }
 
 type Input struct {
-	Ticker        string          `json:"ticker"`
-	Exchange      string          `json:"exchange"`
-	Currency      string          `json:"currency"`
-	Price         PriceInput      `json:"price"`
-	FinancialBase FinancialInput  `json:"financial_base"`
-	Scenarios     []ScenarioInput `json:"scenarios"`
-	HorizonsYears []int           `json:"horizons_years"`
-	Sensitivity   Sensitivity     `json:"sensitivity"`
+	Ticker            string              `json:"ticker"`
+	Exchange          string              `json:"exchange"`
+	Currency          string              `json:"currency"`
+	Price             PriceInput          `json:"price"`
+	FinancialBase     FinancialInput      `json:"financial_base"`
+	Scenarios         []ScenarioInput     `json:"scenarios"`
+	SyntheticFCFBases []SyntheticFCFInput `json:"synthetic_fcf_bases,omitempty"`
+	HorizonsYears     []int               `json:"horizons_years"`
+	Sensitivity       Sensitivity         `json:"sensitivity"`
 }
 
 type PriceInput struct {
@@ -53,6 +54,15 @@ type FinancialInput struct {
 	Normalization string  `json:"normalization_note,omitempty"`
 }
 
+// SyntheticFCFInput holds an explicitly hypothetical normalized FCF-per-share
+// base and its own three scenarios. These alternatives are calculated beside
+// the primary financial base in one invocation; they never replace it.
+type SyntheticFCFInput struct {
+	Name          string          `json:"name"`
+	FinancialBase FinancialInput  `json:"financial_base"`
+	Scenarios     []ScenarioInput `json:"scenarios"`
+}
+
 type ScenarioInput struct {
 	Name                   string   `json:"name"`
 	AnnualGrowthPct        float64  `json:"annual_growth_pct"`
@@ -71,20 +81,33 @@ type Sensitivity struct {
 }
 
 type Result struct {
-	Ticker              string              `json:"ticker"`
-	Exchange            string              `json:"exchange"`
-	Currency            string              `json:"currency"`
-	Price               PriceInput          `json:"price"`
+	Ticker              string               `json:"ticker"`
+	Exchange            string               `json:"exchange"`
+	Currency            string               `json:"currency"`
+	Price               PriceInput           `json:"price"`
+	FinancialBase       FinancialInput       `json:"financial_base"`
+	CurrentMultiple     *float64             `json:"current_multiple,omitempty"`
+	ReturnBasis         string               `json:"return_basis"`
+	ScenarioResults     []ScenarioResult     `json:"scenario_results"`
+	Asymmetry           []AsymmetryResult    `json:"scenario_asymmetry"`
+	ProbabilityWeighted []WeightedResult     `json:"probability_weighted_return,omitempty"`
+	ProbabilitiesStatus string               `json:"probabilities_status"`
+	Sensitivity         []SensitivityResult  `json:"sensitivity"`
+	ReverseValuation    []ReverseResult      `json:"reverse_valuation"`
+	SyntheticFCFResults []SyntheticFCFResult `json:"synthetic_fcf_results,omitempty"`
+	Limitations         []string             `json:"limitations"`
+}
+
+type SyntheticFCFResult struct {
+	Name                string              `json:"name"`
 	FinancialBase       FinancialInput      `json:"financial_base"`
 	CurrentMultiple     *float64            `json:"current_multiple,omitempty"`
-	ReturnBasis         string              `json:"return_basis"`
 	ScenarioResults     []ScenarioResult    `json:"scenario_results"`
 	Asymmetry           []AsymmetryResult   `json:"scenario_asymmetry"`
 	ProbabilityWeighted []WeightedResult    `json:"probability_weighted_return,omitempty"`
 	ProbabilitiesStatus string              `json:"probabilities_status"`
 	Sensitivity         []SensitivityResult `json:"sensitivity"`
 	ReverseValuation    []ReverseResult     `json:"reverse_valuation"`
-	Limitations         []string            `json:"limitations"`
 }
 
 type ScenarioResult struct {
@@ -183,6 +206,32 @@ func Calculate(in Input, opts Options) (Result, error) {
 	}
 	result.Sensitivity = makeSensitivity(in, horizons)
 	result.ReverseValuation = makeReverse(in, horizons)
+	for _, alternative := range in.SyntheticFCFBases {
+		status, weightedOK, _ := validateProbabilities(alternative.Scenarios)
+		synthetic := SyntheticFCFResult{
+			Name: alternative.Name, FinancialBase: alternative.FinancialBase,
+			ProbabilitiesStatus: status,
+		}
+		multiple := round4(in.Price.Value / alternative.FinancialBase.ValuePerShare)
+		synthetic.CurrentMultiple = &multiple
+		for _, scenario := range alternative.Scenarios {
+			sr := ScenarioResult{Name: scenario.Name, ProbabilityPct: scenario.ProbabilityPct}
+			for _, years := range horizons {
+				sr.Horizons = append(sr.Horizons, makeHorizon(in.Price.Value, alternative.FinancialBase.ValuePerShare,
+					scenario.AnnualGrowthPct, scenario.ExitMultiple, scenario.AnnualDividendYieldPct, years))
+			}
+			synthetic.ScenarioResults = append(synthetic.ScenarioResults, sr)
+		}
+		synthetic.Asymmetry = makeAsymmetry(synthetic.ScenarioResults, horizons)
+		if weightedOK {
+			synthetic.ProbabilityWeighted = makeWeighted(synthetic.ScenarioResults, alternative.Scenarios, horizons)
+		}
+		alternativeInput := in
+		alternativeInput.FinancialBase = alternative.FinancialBase
+		synthetic.Sensitivity = makeSensitivity(alternativeInput, horizons)
+		synthetic.ReverseValuation = makeReverse(alternativeInput, horizons)
+		result.SyntheticFCFResults = append(result.SyntheticFCFResults, synthetic)
+	}
 	return result, nil
 }
 
@@ -224,6 +273,43 @@ func validate(in Input, opts Options) error {
 		}
 		if s.ProbabilityPct != nil && (!finite(*s.ProbabilityPct) || *s.ProbabilityPct < 0 || *s.ProbabilityPct > 100) {
 			return fmt.Errorf("scenarios[%d].probability_pct must be between 0 and 100", i)
+		}
+	}
+	if len(in.SyntheticFCFBases) != 0 && len(in.SyntheticFCFBases) != 2 {
+		return errors.New("synthetic_fcf_bases must contain exactly two cases when supplied")
+	}
+	seenSyntheticNames := make(map[string]bool, len(in.SyntheticFCFBases))
+	for i, alternative := range in.SyntheticFCFBases {
+		if blank(alternative.Name) {
+			return fmt.Errorf("synthetic_fcf_bases[%d].name is required", i)
+		}
+		name := strings.ToLower(strings.TrimSpace(alternative.Name))
+		if seenSyntheticNames[name] {
+			return fmt.Errorf("synthetic_fcf_bases[%d].name must be unique", i)
+		}
+		seenSyntheticNames[name] = true
+		if err := validateFinancialBase(alternative.FinancialBase, opts.Now); err != nil {
+			return fmt.Errorf("synthetic_fcf_bases[%d].financial_base: %w", i, err)
+		}
+		if len(alternative.Scenarios) != 3 {
+			return fmt.Errorf("synthetic_fcf_bases[%d] requires exactly three scenarios: conservative, base, optimistic", i)
+		}
+		for j, scenario := range alternative.Scenarios {
+			if strings.ToLower(strings.TrimSpace(scenario.Name)) != want[j] {
+				return fmt.Errorf("synthetic_fcf_bases[%d].scenarios[%d].name must be %q", i, j, want[j])
+			}
+			if !finite(scenario.AnnualGrowthPct) || scenario.AnnualGrowthPct <= -100 {
+				return fmt.Errorf("synthetic_fcf_bases[%d].scenarios[%d].annual_growth_pct must be finite and greater than -100", i, j)
+			}
+			if !finitePositive(scenario.ExitMultiple) {
+				return fmt.Errorf("synthetic_fcf_bases[%d].scenarios[%d].exit_multiple must be finite and positive", i, j)
+			}
+			if !validYield(scenario.AnnualDividendYieldPct) {
+				return fmt.Errorf("synthetic_fcf_bases[%d].scenarios[%d].annual_dividend_yield_pct must be finite, >= 0 and < 100", i, j)
+			}
+		}
+		if _, _, err := validateProbabilities(alternative.Scenarios); err != nil {
+			return fmt.Errorf("synthetic_fcf_bases[%d]: %w", i, err)
 		}
 	}
 	for _, years := range in.HorizonsYears {

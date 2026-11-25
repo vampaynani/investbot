@@ -4,6 +4,8 @@ Deterministic scenario arithmetic for the evaluator. From supplied inputs it com
 
 It does **not** make a `Buy`/`Hold`/`Sell` recommendation, does not assign a valuation level, does not verify sources, and does not claim its assumptions are forecasts.
 
+When capex conversion is material to the thesis, one input may also include exactly two optional `synthetic_fcf_bases` (e.g. `partial_conversion` and `strong_conversion`). Each entry contains a name, an explicitly normalized/synthetic `financial_base`, and its own conservative/base/optimistic scenarios. The same run returns `synthetic_fcf_results` with current implied P/FCF, 3-/5-year scenarios, asymmetry, sensitivity, and reverse-valuation results for each alternative, alongside the primary scenario output. These are supplemental hypotheses and must never be confused with reported FCF or replace the primary evidence-based valuation.
+
 ## Data sources
 
 The program is offline: it reads a JSON file and makes no network requests. You fill in each value from a source you have checked.
@@ -35,6 +37,7 @@ The sample numbers and quote are synthetic placeholders, **not investment data**
 ## Input rules
 
 - Exactly three scenarios, in order: `conservative`, `base`, `optimistic`.
+- Optional `synthetic_fcf_bases`: if present, it must contain exactly two uniquely named alternatives. Each requires a positive per-share financial base with a full normalization note and exactly three scenarios in the required order. Label hypothetical values as synthetic in both `basis` and `normalization_note`.
 - Growth is annual **per-share metric** growth. Reflect dilution or buybacks in this assumption.
 - The exit multiple applies to the chosen per-share metric (EPS with P/E, FCF/share with P/FCF).
 - The financial base must be positive. If earnings or FCF are negative or distorted, choose a positive normalized basis and say so, or do not use this simple multiple model.

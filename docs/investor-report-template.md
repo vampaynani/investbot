@@ -91,6 +91,8 @@ El informe completo de referencia debe seguir el formato detallado siguiente; el
 
 **Supuestos y sensibilidad:** [explica brevemente qué mueve más los resultados —crecimiento, margen, capex, dilución, múltiplo, moneda—, qué escenario está más expuesto y qué no cubre el modelo. La tabla de escenarios y ratios aparece una sola vez, en el resumen del veredicto.]
 
+**Sensibilidad sintética de FCF por conversión de capex (solo si el capex es material para la tesis):** [presenta dos bases separadas —conversión parcial y fuerte—, su FCF/share supuesto, múltiplo P/FCF implícito y resultados a 3/5 años. Etiqueta cualquier base no derivada de datos verificables como sintética/no verificada; no sustituye la valoración principal ni cambia la acción por sí sola.]
+
 ## 3. Consenso de analistas y precio objetivo — lentes separados
 
 **Rating agregado:** [proveedor y categoría exacta; número de analistas; reparto Buy/Strong Buy/Hold/Sell; método y fecha de actualización; fuente.] [Si no es verificable: `N/D`, no reutilizar datos viejos.]

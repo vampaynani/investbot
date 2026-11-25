@@ -256,6 +256,66 @@ func TestSensitivityGridSize(t *testing.T) {
 	}
 }
 
+func TestSyntheticFCFBasesAreCalculatedInSameRun(t *testing.T) {
+	in := testInput()
+	in.SyntheticFCFBases = []SyntheticFCFInput{
+		{
+			Name: "partial_conversion",
+			FinancialBase: FinancialInput{
+				SourceType: sourceAnalystNormalized, Basis: "synthetic normalized FCF/share", ValuePerShare: 9,
+				Period: "illustrative", SourceURL: "https://example.com/filing",
+				Normalization: "Synthetic scenario, not reported financial data.",
+			},
+			Scenarios: []ScenarioInput{
+				{Name: "conservative", AnnualGrowthPct: 6, ExitMultiple: 20},
+				{Name: "base", AnnualGrowthPct: 10, ExitMultiple: 24},
+				{Name: "optimistic", AnnualGrowthPct: 14, ExitMultiple: 28},
+			},
+		},
+		{
+			Name: "strong_conversion",
+			FinancialBase: FinancialInput{
+				SourceType: sourceAnalystNormalized, Basis: "synthetic normalized FCF/share", ValuePerShare: 11,
+				Period: "illustrative", SourceURL: "https://example.com/filing",
+				Normalization: "Synthetic scenario, not reported financial data.",
+			},
+			Scenarios: []ScenarioInput{
+				{Name: "conservative", AnnualGrowthPct: 6, ExitMultiple: 20},
+				{Name: "base", AnnualGrowthPct: 10, ExitMultiple: 24},
+				{Name: "optimistic", AnnualGrowthPct: 14, ExitMultiple: 28},
+			},
+		},
+	}
+
+	got, err := Calculate(in, testOptions())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(got.SyntheticFCFResults) != 2 {
+		t.Fatalf("synthetic FCF result count = %d, want 2", len(got.SyntheticFCFResults))
+	}
+	partial := got.SyntheticFCFResults[0]
+	if partial.Name != "partial_conversion" {
+		t.Fatalf("partial-conversion result = %+v", partial)
+	}
+	approx(t, "partial-conversion current multiple", *partial.CurrentMultiple, 200.0/9.0, 1e-4)
+	base5 := partial.ScenarioResults[1].Horizons[1]
+	approx(t, "partial-conversion base 5y ending price", base5.EndingPrice, 9*math.Pow(1.10, 5)*24, 1e-4)
+	strong := got.SyntheticFCFResults[1]
+	if strong.Name != "strong_conversion" {
+		t.Fatalf("strong-conversion result = %+v", strong)
+	}
+	approx(t, "strong-conversion current multiple", *strong.CurrentMultiple, 200.0/11.0, 1e-4)
+}
+
+func TestSyntheticFCFRequiresExactlyTwoBasesWhenEnabled(t *testing.T) {
+	in := testInput()
+	in.SyntheticFCFBases = []SyntheticFCFInput{{Name: "partial_conversion"}}
+	if _, err := Calculate(in, testOptions()); err == nil || !strings.Contains(err.Error(), "exactly two cases") {
+		t.Fatalf("error = %v, want exactly-two-cases validation", err)
+	}
+}
+
 func TestOutputIsRoundedToFourDecimals(t *testing.T) {
 	got, err := Calculate(testInput(), testOptions())
 	if err != nil {

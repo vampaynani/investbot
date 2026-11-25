@@ -36,6 +36,40 @@
       "annual_dividend_yield_pct": 1.0
     }
   ],
+  "synthetic_fcf_bases": [
+    {
+      "name": "partial_conversion",
+      "financial_base": {
+        "source_type": "analyst_normalized",
+        "basis": "SYNTHETIC normalized FCF/share, partial capex conversion; placeholder only.",
+        "value_per_share": 8.0,
+        "period": "Illustrative synthetic period",
+        "source_url": "https://example.com/filing-summary",
+        "normalization_note": "Synthetic placeholder, not reported or estimated company FCF. Illustrates partial growth-capex conversion; replace with a sourced normalized FCF/share or user-approved hypothetical anchor."
+      },
+      "scenarios": [
+        { "name": "conservative", "annual_growth_pct": 3.0, "exit_multiple": 16.0, "annual_dividend_yield_pct": 1.0 },
+        { "name": "base", "annual_growth_pct": 8.0, "exit_multiple": 20.0, "annual_dividend_yield_pct": 1.0 },
+        { "name": "optimistic", "annual_growth_pct": 12.0, "exit_multiple": 24.0, "annual_dividend_yield_pct": 1.0 }
+      ]
+    },
+    {
+      "name": "strong_conversion",
+      "financial_base": {
+        "source_type": "analyst_normalized",
+        "basis": "SYNTHETIC normalized FCF/share, strong capex conversion; placeholder only.",
+        "value_per_share": 12.0,
+        "period": "Illustrative synthetic period",
+        "source_url": "https://example.com/filing-summary",
+        "normalization_note": "Synthetic placeholder, not reported or estimated company FCF. Illustrates strong growth-capex conversion; replace with a sourced normalized FCF/share or user-approved hypothetical anchor."
+      },
+      "scenarios": [
+        { "name": "conservative", "annual_growth_pct": 3.0, "exit_multiple": 16.0, "annual_dividend_yield_pct": 1.0 },
+        { "name": "base", "annual_growth_pct": 8.0, "exit_multiple": 20.0, "annual_dividend_yield_pct": 1.0 },
+        { "name": "optimistic", "annual_growth_pct": 12.0, "exit_multiple": 24.0, "annual_dividend_yield_pct": 1.0 }
+      ]
+    }
+  ],
   "horizons_years": [3, 5],
   "sensitivity": {
     "annual_growth_pct": [0.0, 5.0, 8.0, 12.0, 15.0],
