@@ -2,3 +2,4 @@
 .env
 .investor_evaluator/
 .investor_portfolio/
+tools/investor-metrics/*
