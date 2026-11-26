@@ -1,0 +1,46 @@
+{
+  "ticker": "000660",
+  "exchange": "KRX",
+  "currency": "KRW",
+  "price": {
+    "value": 1030000,
+    "as_of": "2026-11-25T07:00:00Z",
+    "source_url": "https://finance.yahoo.com/quote/000660.KS/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "TTM diluted EPS (reported, ciclo de pico, NO normalizado)",
+    "value_per_share": 265181,
+    "period": "TTM (últimos 12 meses)",
+    "filed_at": "",
+    "source_url": "https://www.skhynix.com/",
+    "normalization_note": "No es una presentación de la SEC (emisor no estadounidense, KRX) ni una cifra de presentación; source_type = analyst_normalized. El EPS TTM de ~265.181 KRW proviene del breve de evidencia compartido (ingreso neto TTM ~188.90T KRW / 711,12M acciones) y es el dato detrás del P/E TTM reportado de ~3,9-4,1x. Se trata de BENEFICIOS EN PICO del ciclo de IA/HBM, NO normalizados: el ingreso neto FY2025 fue 42.92T KRW (~60.355 KRW/EPS) frente a ~188.90T TTM, lo que muestra que el TTM es un pico extremo del ciclo no sostenible. No se hacen add-backs por SBC, ítems únicos o ganancias de adquisición porque las partidas subyacentes no están verificadas en la presentación; la cifra se usa tal cual del breve. No es guía de la empresa ni consenso. El múltiplo actual es precio / EPS TTM = ~3,9x. El dividendo anual de KRW 20.000 sobre 1.030.000 KRW da un rendimiento ~2,0% (simple, no reinvertido; ex-date 27/nov/2026)."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": -20.0,
+      "exit_multiple": 4.0,
+      "annual_dividend_yield_pct": 2.0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": -8.0,
+      "exit_multiple": 5.0,
+      "annual_dividend_yield_pct": 2.0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 5.0,
+      "exit_multiple": 8.0,
+      "annual_dividend_yield_pct": 2.0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [-25, -20, -15, -10, -8, -5, 0, 5, 10],
+    "exit_multiples": [3, 4, 5, 6, 7, 8, 10, 12],
+    "target_cagr_pct": [0, 5, 8, 10, 12],
+    "annual_dividend_yield_pct": 2.0
+  }
+}

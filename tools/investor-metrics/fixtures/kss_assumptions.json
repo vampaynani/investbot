@@ -1,0 +1,45 @@
+{
+  "ticker": "KSS",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "price": {
+    "value": 25.33,
+    "as_of": "2026-11-24T21:02:53Z",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/KSS?range=1d&interval=1d&includePrePost=false"
+  },
+  "financial_base": {
+    "source_type": "sec_filing",
+    "basis": "diluted EPS, FY2025 (10-K reported, fiscal year ended 2026-01-31)",
+    "value_per_share": 2.38,
+    "period": "FY2025 (ended 2026-01-31)",
+    "filed_at": "2026-03-19",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/885639/000119312526115982/kss-20260131.htm"
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": -3.0,
+      "exit_multiple": 9.0,
+      "annual_dividend_yield_pct": 2.0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 2.0,
+      "exit_multiple": 10.0,
+      "annual_dividend_yield_pct": 2.0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 6.0,
+      "exit_multiple": 13.0,
+      "annual_dividend_yield_pct": 2.0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [-5.0, -2.0, 0.0, 2.0, 4.0, 6.0, 8.0],
+    "exit_multiples": [8.0, 10.0, 12.0, 14.0],
+    "target_cagr_pct": [6.0, 8.0, 10.0],
+    "annual_dividend_yield_pct": 2.0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "ticker": "UBER",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "price": {
+    "value": 64.70,
+    "as_of": "2026-11-24T21:00:00Z",
+    "source_url": "https://markets.financialcontent.com/stocks/quote?Symbol=321%3A2578137328"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Normalized diluted EPS (FY2025 earning power)",
+    "value_per_share": 2.10,
+    "period": "Fiscal year ended December 31, 2025",
+    "filed_at": "2026-02-13",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1543151/000154315126000015/uber-20251231.htm",
+    "normalization_note": "GAAP diluted EPS FY2025 was $4.73 on net income attributable of $10,053M, but that net income includes a $4,346M income-tax benefit (provision was a benefit of -$4,346M) and pre-tax income of $5,800M. The tax benefit is non-recurring, so GAAP EPS is not representative of earning power. Normalized basis: pre-tax income $5,800M (10-K) at an assumed ~23% normalized effective tax rate = ~$4,466M normalized net income; divided by ~2,125M diluted weighted-average shares (derived as $10,053M net income / $4.73 diluted EPS) = ~$2.10 per share. The 23% tax rate is an assumption, not a filing figure; at 20-25% the normalized EPS is ~$2.02-2.18. Current price $64.70 implies ~31x this normalized EPS (vs ~13.7x on reported GAAP $4.73, which is misleading). Uber pays no dividend (yield N/A)."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 8,
+      "exit_multiple": 18,
+      "annual_dividend_yield_pct": 0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 14,
+      "exit_multiple": 25,
+      "annual_dividend_yield_pct": 0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 20,
+      "exit_multiple": 30,
+      "annual_dividend_yield_pct": 0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [0, 8, 14, 20, 30],
+    "exit_multiples": [18, 25, 30, 35],
+    "target_cagr_pct": [5, 10, 15],
+    "annual_dividend_yield_pct": 0
+  }
+}

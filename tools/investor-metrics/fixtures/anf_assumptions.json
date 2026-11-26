@@ -1,0 +1,46 @@
+{
+  "ticker": "ANF",
+  "exchange": "NYSE",
+  "currency": "USD",
+  "price": {
+    "value": 168.10,
+    "as_of": "2026-11-24T21:00:00Z",
+    "source_url": "https://markets.financialcontent.com/ms.intelvalue/quote?Symbol=ANF"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "GAAP diluted EPS FY2025 derived = GAAP net income $506,921,000 (SEC 10-K fiscal year ended 2026-01-31, filed 2026-03-26) / 61,537,495 shares outstanding (financialcontent quote page, same date as price)",
+    "value_per_share": 8.24,
+    "period": "FY2025 (ended 2026-01-31)",
+    "filed_at": "2026-03-26",
+    "source_url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018840.json",
+    "normalization_note": "Derived per-share basis, not a directly-tagged EPS figure in SEC XBRL (EarningsPerShareDiluted has no USD series for ANF in companyfacts). Numerator: GAAP net income FY2025 $506,921,000 per SEC 10-K filed 2026-03-26 (accession 0001018840-26-000012; concept NetIncomeLoss, end 2026-01-31). Denominator: 61,537,495 shares outstanding per financialcontent detailed quote (consistent with market cap $10.34B at $168.10). GAAP net income is used as-is (no material one-off identified); FY2025 net income ($506,9M) was below FY2024 ($566,2M), so this is a conservative base. Q3 FY2026 results were reported 24-nov-2026 (price +19,69% that day) but are not yet in SEC XBRL; the base may understate run-rate earnings if that strength persists. FCF FY2025 = operating cash flow $619,1M (NetCashProvidedByUsedInOperatingActivities) - capex $240,8M (PaymentsToAcquirePropertyPlantAndEquipment) = $378,4M, i.e. ~$6,15/share; balance sheet is net cash (~$759,5M cash, no material debt). Dividend: none."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 5.0,
+      "exit_multiple": 15.0,
+      "annual_dividend_yield_pct": 0.0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 10.0,
+      "exit_multiple": 18.0,
+      "annual_dividend_yield_pct": 0.0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 18.0,
+      "exit_multiple": 22.0,
+      "annual_dividend_yield_pct": 0.0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [0.0, 5.0, 10.0, 15.0, 20.0],
+    "exit_multiples": [12.0, 15.0, 18.0, 20.0, 22.0, 25.0],
+    "target_cagr_pct": [6.0, 8.0, 10.0, 12.0],
+    "annual_dividend_yield_pct": 0.0
+  }
+}

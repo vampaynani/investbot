@@ -1,0 +1,46 @@
+{
+  "ticker": "NVDA",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 149.30,
+    "as_of": "2026-11-25T21:00:01Z",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA?range=1d&interval=1d&includePrePost=true"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Consenso de EPS diluido no-GAAP, ejercicio fiscal 2027 (cierra 31-ene-2027), S&P Global Market Intelligence vía StockAnalysis.com, actualizado 24-nov-2026 (post-resultados Q3 FY27 del 17-nov-2026). Figura de consenso de analistas (no cifra de presentación ante la SEC). Q3 FY27 real: EPS diluido no-GAAP USD 2,68, ingresos USD 115,8B (+103% interanual). Guía Q4 FY27: ingresos USD 130,0B ±3%, GM 71,0%–72,0%. Guía FY2028: crecimiento de ingresos ~75%.",
+    "value_per_share": 9.67,
+    "period": "FY2027E (consenso post-Q3 FY27)",
+    "filed_at": "",
+    "source_url": "https://stockanalysis.com/stocks/nvda/forecast/",
+    "normalization_note": "EPS de consenso no-GAAP ajustado (S&P Global/StockAnalysis, 63 analistas, 24-nov-2026). No es una cifra de la SEC. Se usa EPS FY2027E como base per-share positiva. El P/E sobre FY2027E es ~15,4x; el P/E forward sobre FY2028E ($16,61E) es ~9,0x. Dividendo USD 0,25/trimestre = USD 1,00/año, rendimiento ~0,67% sobre el precio actual. Caja neta ex-valores de mercado ≈ USD 21,1B (inmaterial vs cap ~USD 3,7T)."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 8.0,
+      "exit_multiple": 10.0,
+      "annual_dividend_yield_pct": 0.67
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 24.0,
+      "exit_multiple": 16.0,
+      "annual_dividend_yield_pct": 0.67
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 36.0,
+      "exit_multiple": 21.0,
+      "annual_dividend_yield_pct": 0.67
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [10.0, 20.0, 30.0, 40.0],
+    "exit_multiples": [12.0, 16.0, 20.0, 24.0],
+    "target_cagr_pct": [5.0, 10.0, 15.0],
+    "annual_dividend_yield_pct": 0.67
+  }
+}

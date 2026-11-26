@@ -1,0 +1,46 @@
+{
+  "ticker": "CRWD",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 249.452,
+    "as_of": "2026-11-19T17:28:35Z",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/CRWD"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Non-GAAP diluted EPS (FY2027 guided midpoint)",
+    "value_per_share": 1.255,
+    "period": "FY2027 (ending January 31, 2027), company guidance midpoint issued 2026-08-26",
+    "filed_at": "2026-08-26",
+    "source_url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-reports-second-quarter-fiscal-year-2027-financial",
+    "normalization_note": "GAAP FY2026 diluted EPS was -$0.65 (net loss -$162.5M), distorted by July 2024 outage incident costs and stock-based compensation; P/E on GAAP trailing earnings is not meaningful. Non-GAAP diluted EPS excludes SBC and related payroll taxes, amortization of acquired intangibles, outage-related costs, strategic plan charges, and other items. Q2 FY2027 non-GAAP diluted EPS was $0.31/quarter (earnings release 2026-08-26, vs $0.23 in Q2 FY2026, +34.8% YoY). FY2027 guided non-GAAP diluted EPS range: $1.25-$1.26; midpoint $1.255 used as base. Four-for-one stock split effective after close July 1, 2026; all per-share figures are post-split. Diluted weighted shares ~1.04B. Company does not pay dividends."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 18.0,
+      "exit_multiple": 50.0,
+      "annual_dividend_yield_pct": 0.0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 25.0,
+      "exit_multiple": 70.0,
+      "annual_dividend_yield_pct": 0.0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 32.0,
+      "exit_multiple": 90.0,
+      "annual_dividend_yield_pct": 0.0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [15.0, 20.0, 25.0, 30.0, 35.0],
+    "exit_multiples": [50.0, 70.0, 90.0, 110.0],
+    "target_cagr_pct": [0.0, 5.0, 10.0, 15.0],
+    "annual_dividend_yield_pct": 0.0
+  }
+}

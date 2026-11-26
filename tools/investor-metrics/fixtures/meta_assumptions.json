@@ -1,0 +1,46 @@
+{
+  "ticker": "META",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 609.89,
+    "as_of": "2026-11-25T21:00:02Z",
+    "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/META?region=US&lang=en-US&includePrePost=false&interval=1d&range=1d&corsDomain=finance.yahoo.com&.tsrc=finance"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Consensus FY2026E diluted EPS, Street/non-GAAP basis",
+    "value_per_share": 29.03,
+    "period": "FY2026E (consensus as of 2026-11-24, 42 analysts)",
+    "filed_at": "2026-11-24",
+    "source_url": "https://tenetinvesting.com/stock/META/analyst",
+    "normalization_note": "Consensus FY2026E EPS $29.03 (tenetinvesting, 42 analysts, Street/non-GAAP basis, as of 2026-11-24). Cross-checked vs StockAnalysis/S&P Global FY2026E $29.36 (non-GAAP, 2026-11-25) and WSJ FY2026 $31.19; spread ~7% reflects GAAP-vs-adjusted and contributor differences. Prior normalized tax-adjusted FY2026E ~$26.6 (effective tax 1.9% vs guided 15-17%) not re-derived for want of fresh tax data; using consensus $29.03 as the verifiable base, noting tax-normalization downside risk. Prior record: EPS TTM GAAP $29.33 (17-nov-2026), FY2027E $35.59 (S&P Global)."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 5.0,
+      "exit_multiple": 14.0,
+      "annual_dividend_yield_pct": 0.34
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 8.0,
+      "exit_multiple": 17.0,
+      "annual_dividend_yield_pct": 0.34
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 12.0,
+      "exit_multiple": 20.0,
+      "annual_dividend_yield_pct": 0.34
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [0.0, 4.0, 8.0, 12.0],
+    "exit_multiples": [14.0, 17.0, 20.0],
+    "target_cagr_pct": [0.0, 5.0, 10.0],
+    "annual_dividend_yield_pct": 0.34
+  }
+}

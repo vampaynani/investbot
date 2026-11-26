@@ -1,0 +1,46 @@
+{
+  "ticker": "OKTA",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 195.61,
+    "as_of": "2026-11-18T21:00:00Z",
+    "source_url": "https://markets.financialcontent.com/ms.intelvalue/quote?Symbol=537%3A36082513"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "non-GAAP diluted EPS (FY2027 guidance midpoint)",
+    "value_per_share": 3.92,
+    "period": "FY2027",
+    "filed_at": "2026-08-26",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1660134/000166013426000068/okta-7312026_ex991.htm",
+    "normalization_note": "Midpoint of Okta's FY2027 non-GAAP diluted EPS guidance ($3.90-$3.94) from Q2 FY2027 earnings release filed as 8-K exhibit on Aug 26, 2026. Non-GAAP EPS excludes stock-based compensation and other adjustments per company reconciliation. Forward-looking company guidance, not a historical GAAP figure from the 10-K. GAAP diluted EPS for FY2026 (year ended Jan 31, 2026) was $1.31 per the 10-K filed Mar 5, 2026; GAAP P/E of ~149x is distorted by significant stock-based compensation ($544M in FY2026). Forward non-GAAP P/E at $3.92 base = ~50x."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 8.0,
+      "exit_multiple": 25.0,
+      "annual_dividend_yield_pct": 0.0
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 15.0,
+      "exit_multiple": 35.0,
+      "annual_dividend_yield_pct": 0.0
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 22.0,
+      "exit_multiple": 45.0,
+      "annual_dividend_yield_pct": 0.0
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [5.0, 10.0, 15.0, 20.0, 25.0],
+    "exit_multiples": [20.0, 25.0, 30.0, 35.0, 40.0, 45.0],
+    "target_cagr_pct": [8.0, 10.0, 12.0, 15.0],
+    "annual_dividend_yield_pct": 0.0
+  }
+}

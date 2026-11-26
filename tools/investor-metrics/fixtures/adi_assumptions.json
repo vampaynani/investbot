@@ -1,0 +1,46 @@
+{
+  "ticker": "ADI",
+  "exchange": "NASDAQ",
+  "currency": "USD",
+  "price": {
+    "value": 312.95,
+    "as_of": "2026-11-24T21:00:00Z",
+    "source_url": "https://stockanalysis.com/stocks/adi/"
+  },
+  "financial_base": {
+    "source_type": "analyst_normalized",
+    "basis": "Earnings-per-share reference consistent with the reported P/E (price / P/E), NOT an SEC-filing EPS figure",
+    "value_per_share": 10.21,
+    "period": "Reference basis aligned with Yahoo Finance reported P/E of 30.65x on the 2026-11-24 close",
+    "filed_at": "2026-11-24",
+    "source_url": "https://stockanalysis.com/stocks/adi/",
+    "normalization_note": "ADI reports FY2025 GAAP diluted EPS of $4.56 and net income of $2,267M (stockanalysis.com). Price $312.95 / EPS $4.56 implies ~68.6x, which does NOT match the Yahoo Finance reported P/E of 30.65x. The reported P/E therefore appears to be forward/TTM on a different (recovered) earnings base (~$10.21/share = $312.95 / 30.65). I use $10.21/share as the per-share earnings reference solely so the model's entry multiple equals the reported 30.65x. This is a derived reference, not a filed EPS, and the FY2025 EPS of $4.56 is treated as a depressed/cyclical trough, not the earnings power the market is pricing. Shares outstanding and FCF/share are not available from the supplied data, so a verified P/FCF cannot be computed; FCF figures are used only qualitatively (FY2025 $4,279M; TTM $5,453M; net debt negative ~$5.3-6.2B). Dividend FY2026 $4.40/share (~1.41% yield) is taken from the user-provided data."
+  },
+  "scenarios": [
+    {
+      "name": "conservative",
+      "annual_growth_pct": 3.0,
+      "exit_multiple": 18.0,
+      "annual_dividend_yield_pct": 1.41
+    },
+    {
+      "name": "base",
+      "annual_growth_pct": 6.0,
+      "exit_multiple": 24.0,
+      "annual_dividend_yield_pct": 1.41
+    },
+    {
+      "name": "optimistic",
+      "annual_growth_pct": 10.0,
+      "exit_multiple": 30.0,
+      "annual_dividend_yield_pct": 1.41
+    }
+  ],
+  "horizons_years": [3, 5],
+  "sensitivity": {
+    "annual_growth_pct": [0.0, 4.0, 6.0, 8.0, 10.0],
+    "exit_multiples": [18.0, 24.0, 30.0],
+    "target_cagr_pct": [6.0, 8.0, 10.0],
+    "annual_dividend_yield_pct": 1.41
+  }
+}
