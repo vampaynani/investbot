@@ -2,4 +2,6 @@
 .env
 .investor_evaluator/
 .investor_portfolio/
-tools/investor-metrics/*
+# investor-metrics: código fuente sí, binario y salidas regenerables no
+tools/investor-metrics/investor-metrics
+tools/investor-metrics/evals/

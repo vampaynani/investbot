@@ -11,6 +11,12 @@ import (
 )
 
 func main() {
+	if len(os.Args) > 1 && os.Args[1] == "weights" {
+		if err := runWeights(os.Args[2:], time.Now().UTC(), os.Stdout); err != nil {
+			fatal(err)
+		}
+		return
+	}
 	inputPath := flag.String("input", "", "path to an assumptions JSON file")
 	maxPriceAge := flag.Duration("max-price-age", 24*time.Hour, "reject a quote whose price.as_of is older than this")
 	flag.Parse()

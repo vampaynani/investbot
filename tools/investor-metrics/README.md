@@ -6,6 +6,39 @@ It does **not** make a `Buy`/`Hold`/`Sell` recommendation, does not assign a val
 
 When capex conversion is material to the thesis, one input may also include exactly two optional `synthetic_fcf_bases` (e.g. `partial_conversion` and `strong_conversion`). Each entry contains a name, an explicitly normalized/synthetic `financial_base`, and its own conservative/base/optimistic scenarios. The same run returns `synthetic_fcf_results` with current implied P/FCF, 3-/5-year scenarios, asymmetry, sensitivity, and reverse-valuation results for each alternative, alongside the primary scenario output. These are supplemental hypotheses and must never be confused with reported FCF or replace the primary evidence-based valuation.
 
+## Portfolio weights
+
+`investor-metrics weights` computes `weight_pct` for `.investor_portfolio/positions.json`, used by `/investor-portfolio` on every update.
+
+```sh
+go run . weights -file ../../.investor_portfolio/positions.json            # report only
+go run . weights -file ../../.investor_portfolio/positions.json -write     # also write weight_pct
+go run . weights -file ... -write -base USD -fx MXN=0.054                  # mixed currencies
+```
+
+- Weight = `shares × price` ÷ sum of `shares × price` over the listed positions × 100, in exact decimal arithmetic (no floats), rounded half up to 2 decimals. Same file and date give byte-identical output; a second `-write` is a no-op. Rounded weights may sum to 100.00 ± 0.01.
+- Quotes (`price`, `price_as_of`) must already be in the file, verified by the caller. The program is offline. It rejects a quote older than `-max-price-age-days` (default 3, which covers a weekend) or dated in the future.
+- If any quote is missing, stale, or future-dated, or currencies are mixed without `-base` and an `-fx` rate for each other currency, no weight can be trusted: every `weight_pct` is written as `null`, the output is `status: "unavailable"` with the reasons, and the exit code is 0. A malformed file (unknown field, bad decimal, duplicate listing, unsupported schema) exits 1 and writes nothing.
+- Weights are over the listed positions only; with `coverage: partial` they are not weights of the whole portfolio.
+
+## Folder convention
+
+```
+tools/investor-metrics/
+├── fixtures/          # verified input assumptions (tracked in git)
+│   └── <ticker>_assumptions.json
+├── evals/             # dated evaluation outputs (ignored, regenerable)
+│   └── <ticker>_eval_YYYYMMDD.json
+├── examples/          # synthetic placeholders, not investment data
+│   └── sample.json
+├── main.go, metrics.go, weights.go, *_test.go
+└── go.mod
+```
+
+- **`fixtures/`**: inputs de supuestos verificados para una empresa. Son parte del proyecto y se rastrean en git. Un agente o skill que necesite un archivo de entrada para una empresa existente lo lee desde aquí; uno nuevo se crea aquí con nombre `<ticker>_assumptions.json`.
+- **`evals/`**: salidas con fecha de corridas de evaluación (escenarios, FCF sintéticos, bases sintéticas). Son resultado regenerable, no se rastrean en git (`tools/investor-metrics/evals/` está en `.gitignore`). Los agentes escriben sus resultados aquí con nombre `<ticker>_eval_YYYYMMDD.json` (o similar con fecha).
+- **`examples/`**: placeholders sintéticos, nunca datos de inversión reales.
+
 ## Data sources
 
 The program is offline: it reads a JSON file and makes no network requests. You fill in each value from a source you have checked.

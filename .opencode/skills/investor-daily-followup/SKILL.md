@@ -37,5 +37,5 @@ Incluya los pesos reportados solo con su fecha de snapshot. Mantenga la recomend
 
 ## Contexto de cartera
 
-- Use `weight_pct` solo cuando el usuario lo haya suministrado, etiquetando su fecha de snapshot. No calcule concentración de cartera a partir de recuentos de acciones por sí solos.
+- Use `weight_pct` tal como está guardado (lo calcula `/investor-portfolio` con valor de mercado a la fecha `price_as_of`), etiquetando esa fecha. No recalcule concentración a partir de recuentos de acciones por sí solos; `null` significa desconocido.
 - Trate `coverage: partial` como incompleto. Un ticker faltante no es evidencia de no tener posición. Solo diga que un ticker no se tiene cuando el snapshot está completo y actual. Un snapshot completo vacío significa que el usuario confirmó no tener activos relevantes.
